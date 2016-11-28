@@ -19,5 +19,5 @@ if Rails.env.development? || Rails.env.test?
     task.options = ["-D"]
   end
 
-  task(:default).clear.enhance(["rubocop", "spec:all"])
+  task(:default).clear.enhance(["rubocop", "spec:all", "teaspoon"])
 end
