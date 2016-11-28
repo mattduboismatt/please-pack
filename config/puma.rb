@@ -13,4 +13,4 @@ on_worker_boot do
 end
 
 # Allow puma to be restarted by `rails restart` command.
-plugin :tmp_restart unless Rails.env.test? || Rails.env.development?
+# plugin :tmp_restart unless Rails.env.test? || Rails.env.development?
