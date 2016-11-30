@@ -21,3 +21,6 @@
 
 # Ignore vendor libraries
 node_modules/
+
+# Ignore compiled js
+app/assets/javascripts/app.js
