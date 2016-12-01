@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   mount MagicLamp::Genie, at: "/magic_lamp" if defined?(MagicLamp)
   mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql" if defined?(GraphiQL::Rails::Engine)
+
+  get "/*path", to: "home#index"
 end

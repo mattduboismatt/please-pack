@@ -34,7 +34,11 @@
     "parser": "babel-eslint",
     "ignore": []
   },
+  "graphql": {
+    "file": "./schema.json"
+  },
   "babel": {
+    "sourceMaps": "both",
     "plugins": [
       "react-relay",
       "transform-class-properties"
