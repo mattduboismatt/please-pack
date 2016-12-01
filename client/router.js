@@ -6,16 +6,26 @@ import useRelay from 'react-router-relay'
 import App from 'layouts/app'
 import Layout from 'layouts/layout'
 import Pools from 'pages/pools'
+import PoolStandings from 'pages/pool_standings'
 import Admin from 'pages/admin'
 
 const Empty = () => null
+
+const ListsQueries = {
+  lists: () => Relay.QL`query { lists }`
+}
+
+const PoolStandingsQueries = {
+  pool: () => Relay.QL`query { pool(model_id: $poolId) }`,
+}
 
 export default function AppRouter () {
   return (
     <Router history={browserHistory} render={applyRouterMiddleware(useRelay)} environment={Relay.Store}>
       <Route path='/' component={App}>
-        <Route component={Layout}>
-          <IndexRoute component={Pools} />
+        <Route component={Layout} >
+          <IndexRoute component={Pools} queries={ListsQueries} />
+          <Route path='pools/:poolId' component={PoolStandings} queries={PoolStandingsQueries} />
           <Route path='admin' component={Admin} />
           <Route path='*' component={Empty} />
         </Route>
