@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   post "/graphql", to: "graphql#create"
 
   mount MagicLamp::Genie, at: "/magic_lamp" if defined?(MagicLamp)
-  mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql" if defined?(GraphiQL::Rails::Engine)
+
+  if defined?(GraphiQL::Rails::Engine)
+    GraphiQL::Rails.config.csrf = false
+    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
+  end
 
   get "/*path", to: "home#index"
 end
