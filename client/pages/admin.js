@@ -1,7 +1,31 @@
 import React from 'react'
+import Relay from 'react-relay'
 
-export default class Admin extends React.Component {
+import PoolsList from 'pages/pools_list'
+
+class Admin extends React.Component {
   render() {
-    return <h2>Super Secret Admin Panel</h2>
+    let { pools } = this.props.lists
+
+    return (
+      <div>
+        <h2>Super Secret Admin Panel</h2>
+        <PoolsList pools={pools} admin={true}/>
+      </div>
+    )
   }
 }
+
+export default Relay.createContainer(Admin, {
+  fragments: {
+    lists: () => Relay.QL`
+      fragment on Lists {
+        pools {
+          id
+          model_id
+          title
+        }
+      }
+    `
+  }
+})

@@ -22,6 +22,14 @@ RSpec.describe "Homepage", js: true do
     expect(page).to have_text(/standings/i)
   end
 
+  it "does not display a link to score the pool" do
+    pool = create(:pool)
+
+    visit "/"
+    expect(page).to have_text(/#{pool.title}/i)
+    expect(page).to_not have_link("Score")
+  end
+
   it "falls back to an empty page" do
     visit "/foobar"
     expect(page).to have_text(/please pack your knives/i)

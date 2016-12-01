@@ -1,19 +1,7 @@
 import React from 'react'
 import Relay from 'react-relay'
-import { Link } from 'react-router'
 
-class Pool extends React.Component {
-  render() {
-    const { pool } = this.props
-    const poolPath = `/pools/${pool.model_id}`
-
-    return (
-      <div className='pool'>
-        <Link to={poolPath}>{pool.title}</Link>
-      </div>
-    )
-  }
-}
+import PoolsList from 'pages/pools_list'
 
 class Pools extends React.Component {
   render() {
@@ -22,9 +10,7 @@ class Pools extends React.Component {
     return (
       <div>
         <h2>Pools!</h2>
-        <div className='pools-list'>
-          {pools.map(pool => <Pool key={pool.id} pool={pool}/>)}
-        </div>
+        <PoolsList pools={pools} />
       </div>
     )
   }

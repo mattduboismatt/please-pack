@@ -26,7 +26,7 @@ export default function AppRouter () {
         <Route component={Layout} >
           <IndexRoute component={Pools} queries={ListsQueries} />
           <Route path='pools/:poolId' component={PoolStandings} queries={PoolStandingsQueries} />
-          <Route path='admin' component={Admin} />
+          <Route path='admin' component={Admin} queries={ListsQueries} />
           <Route path='*' component={Empty} />
         </Route>
       </Route>
