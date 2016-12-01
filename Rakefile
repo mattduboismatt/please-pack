@@ -29,5 +29,5 @@ if Rails.env.development? || Rails.env.test?
     puts "Finished generating graphql schema json\n"
   end
 
-  task(:default).clear.enhance(["rubocop", "spec:all", "teaspoon", "graphql_schema"])
+  task(:default).clear.enhance(["rubocop", "spec:all", "graphql_schema"])
 end
