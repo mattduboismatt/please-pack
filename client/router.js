@@ -5,9 +5,9 @@ import useRelay from 'react-router-relay'
 
 import App from 'layouts/app'
 import Layout from 'layouts/layout'
-import Pools from 'pages/pools'
-import PoolStandings from 'pages/pool_standings'
-import Admin from 'pages/admin'
+import Pools from 'components/pools'
+import PoolStandings from 'components/pool_standings'
+import Admin from 'components/admin'
 
 const Empty = () => null
 

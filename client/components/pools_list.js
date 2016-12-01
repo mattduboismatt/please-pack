@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PoolRow from 'pages/pool_row'
+import PoolRow from 'components/pool_row'
 
 export default class PoolsList extends React.Component {
   render() {

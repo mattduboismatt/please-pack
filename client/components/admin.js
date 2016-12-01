@@ -1,7 +1,7 @@
 import React from 'react'
 import Relay from 'react-relay'
 
-import PoolsList from 'pages/pools_list'
+import PoolsList from 'components/pools_list'
 
 class Admin extends React.Component {
   render() {
