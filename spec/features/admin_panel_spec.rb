@@ -27,4 +27,21 @@ RSpec.describe "Admin Panel", js: true do
     visit "/admin"
     expect(page).to have_link("Score", href: "/pools/#{pool.id}/score")
   end
+
+  describe "adding a pool" do
+    context "successfully" do
+      it "appends the pool to the list" do
+        pool_title = "So you think you can refactor?"
+
+        visit "/admin"
+        fill_in "pool_title", with: pool_title
+        click_button "Create Pool"
+        expect(page).to have_link(pool_title)
+      end
+    end
+
+    context "unsuccessfully" do
+      xit "displays an error message"
+    end
+  end
 end
