@@ -5,15 +5,9 @@ module Queries
 
     field :node, field: NodeIdentification.field
 
-    field :lists do
-      type !ListsType
-      resolve ->(_object, _args, _context) { {} }
-    end
-
-    field :pool do
-      type !PoolType
-      argument :model_id, !types.ID, "The ID of the Pool"
-      resolve ->(_object, args, _context) { Pool.find(args["model_id"]) }
+    field :viewer do
+      type Queries::Viewer
+      resolve ->(_object, _args, _context) { ::Viewer }
     end
   end
 end
