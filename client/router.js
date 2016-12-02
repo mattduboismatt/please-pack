@@ -11,12 +11,12 @@ import Admin from 'components/admin'
 
 const Empty = () => null
 
-const ListsQueries = {
-  lists: () => Relay.QL`query { lists }`
+const ViewerQueries = {
+  viewer: () => Relay.QL`query { viewer }`
 }
 
-const PoolStandingsQueries = {
-  pool: () => Relay.QL`query { pool(model_id: $poolId) }`,
+const preparePoolParams = (params, { location }) => {
+  return { model_id: params.poolId }
 }
 
 export default function AppRouter () {
@@ -24,9 +24,9 @@ export default function AppRouter () {
     <Router history={browserHistory} render={applyRouterMiddleware(useRelay)} environment={Relay.Store}>
       <Route path='/' component={App}>
         <Route component={Layout} >
-          <IndexRoute component={Pools} queries={ListsQueries} />
-          <Route path='pools/:poolId' component={PoolStandings} queries={PoolStandingsQueries} />
-          <Route path='admin' component={Admin} queries={ListsQueries} />
+          <IndexRoute component={Pools} queries={ViewerQueries} />
+          <Route path='pools/:poolId' component={PoolStandings} queries={ViewerQueries} prepareParams={preparePoolParams} />
+          <Route path='admin' component={Admin} queries={ViewerQueries} />
           <Route path='*' component={Empty} />
         </Route>
       </Route>

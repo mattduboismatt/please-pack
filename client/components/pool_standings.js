@@ -3,7 +3,7 @@ import Relay from 'react-relay'
 
 class PoolStandings extends React.Component {
   render() {
-    const { pool } = this.props
+    const { pool } = this.props.viewer
 
     return (
       <div>
@@ -15,12 +15,18 @@ class PoolStandings extends React.Component {
 }
 
 export default Relay.createContainer(PoolStandings, {
+  initialVariables: {
+    model_id: null
+  },
+
   fragments: {
-    pool: () => Relay.QL`
-      fragment on Pool {
-        id
-        model_id
-        title
+    viewer: () => Relay.QL`
+      fragment on Viewer {
+        pool(model_id: $model_id) {
+          id
+          model_id
+          title
+        }
       }
     `
   }
