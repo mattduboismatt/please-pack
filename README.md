@@ -1,24 +1,40 @@
-# README
+# Please Pack
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+---
+## Dependencies
+- Postgres
+- Ruby 2.3.1
+- Bundler
+- yarn
+- chromedriver (for integration tests)
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+Assuming dependencies are installed and Postgres is running:
 
-* System dependencies
+```
+git clone git@github.com:mattduboismatt/please-pack.git
+cd please-pack
+bundle install
+rails db:create db:migrate db:seed
+rake
+yarn
+bundle exec rails server
+yarn start
+```
 
-* Configuration
 
-* Database creation
+## Development
+Run the development server:
 
-* Database initialization
+```
+bundle exec rails server
+yarn start
+```
 
-* How to run the test suite
+## Testing
+Run all the tests:
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+rake
+```
