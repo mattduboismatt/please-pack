@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129161340) do
+ActiveRecord::Schema.define(version: 20161203220458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contestants", force: :cascade do |t|
+    t.integer  "pool_id",     null: false
+    t.string   "first_name",  null: false
+    t.string   "last_name"
+    t.string   "residence"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["pool_id"], name: "index_contestants_on_pool_id", using: :btree
+  end
 
   create_table "pools", force: :cascade do |t|
     t.string   "title"
