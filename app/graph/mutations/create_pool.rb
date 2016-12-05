@@ -8,8 +8,9 @@ module Mutations
     return_field :viewer, Queries::Viewer
 
     resolve ->(inputs, _context) do
-      connection = GraphQL::Relay::RelationConnection.new(Pool.all, {})
       pool = Pool.create!(title: inputs[:pool_title])
+
+      connection = GraphQL::Relay::RelationConnection.new(Pool.all, {})
 
       {
         pool_edge: GraphQL::Relay::Edge.new(pool, connection),

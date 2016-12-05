@@ -5,7 +5,7 @@ RSpec.describe Queries::NodeIdentification do
   let!(:other_pool) { create :pool }
 
   describe "#object_from_id" do
-    xit "can get an object from its global id" do
+    it "can get an object from its global id" do
       global_id = GraphQL::Relay::GlobalNodeIdentification.new.to_global_id("Pool", pool.id)
       expect(subject.object_from_id(global_id, {})).to eq pool
 
