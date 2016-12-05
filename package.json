@@ -11,6 +11,10 @@
     "lint": "standard",
     "postinstall": "webpack"
   },
+  "engines": {
+    "node": "7.2.0",
+    "npm": "3.10.9"
+  },
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.1",
