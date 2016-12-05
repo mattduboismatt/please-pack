@@ -5,5 +5,6 @@ module Mutations
 
     field :create_pool, field: CreatePool.field
     field :create_contestant, field: CreateContestant.field
+    field :create_entry, field: CreateEntry.field
   end
 end

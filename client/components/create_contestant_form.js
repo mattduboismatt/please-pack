@@ -30,7 +30,6 @@ export default class CreateContestantForm extends React.Component {
     console.log(error.getError().source.errors[0].message)
   }
 
-
   render() {
     return (
       <div className='create-contestant'>

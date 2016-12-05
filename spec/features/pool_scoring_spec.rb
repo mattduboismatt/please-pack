@@ -56,5 +56,28 @@ RSpec.describe "Scoring a pool", js: true do
         end
       end
     end
+
+    describe "adding an entry" do
+      let(:entry_name) { "The Champ" }
+
+      context "successfully" do
+        it "appends the entry to the list and clears the form" do
+          within(".create-entry") do
+            fill_in "entry_name", with: entry_name
+            click_button "Create Entry"
+          end
+          within(".entries-list") do
+            expect(page).to have_text entry_name
+          end
+          within(".create-entry") do
+            expect(find("input#entry_name").value).to eq ""
+          end
+        end
+      end
+
+      context "unsuccessfully" do
+        xit "displays an error message"
+      end
+    end
   end
 end

@@ -4,6 +4,7 @@ import Relay from 'react-relay'
 import ContestantsList from 'components/contestants_list'
 import CreateContestantForm from 'components/create_contestant_form'
 import EntriesList from 'components/entries_list'
+import CreateEntryForm from 'components/create_entry_form'
 
 class PoolScoring extends React.Component {
   render() {
@@ -22,6 +23,7 @@ class PoolScoring extends React.Component {
           </div>
           <div className='entries'>
             <EntriesList entries={entries} />
+            <CreateEntryForm pool={pool} />
           </div>
         </div>
       </div>

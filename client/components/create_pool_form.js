@@ -7,11 +7,11 @@ export default class CreatePoolForm extends React.Component {
   state = { value: '' }
 
   handleChange = (e) => {
-    this.setState({value: e.target.value})
+    this.setState({ value: e.target.value })
   }
 
   handleSubmit = () => {
-    let mutation = new CreatePoolMutation({ viewer: this.props.viewer, pool_title: this.state.value})
+    let mutation = new CreatePoolMutation({ viewer: this.props.viewer, pool_title: this.state.value })
     Relay.Store.commitUpdate(mutation, {
       onSuccess: this.createSuccess,
       onFailure: this.createError
@@ -23,7 +23,7 @@ export default class CreatePoolForm extends React.Component {
   }
 
   createError = (error) => {
-    console.log(error.getError())
+    console.log(error.getError().source.errors[0].message)
   }
 
   render() {
