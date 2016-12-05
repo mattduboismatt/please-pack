@@ -34,7 +34,7 @@ RSpec.describe Queries::Viewer do
     end
 
     context "failure" do
-      let(:pool_id) { 17 }
+      let(:pool_id) { 1234 }
       it "raises an error" do
         expect do
           subject.resolve(nil, args, nil)

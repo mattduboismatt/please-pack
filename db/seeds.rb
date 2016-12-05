@@ -20,3 +20,7 @@ create(:contestant, pool: top_chef, first_name: "Katsuji", last_name: "Tanabe", 
 create(:contestant, pool: top_chef, first_name: "Sam", last_name: "Talbot", residence: "Brooklyn, NY", description: "Exef Chef / Owner, Pretty Southern")
 create(:contestant, pool: top_chef, first_name: "Sheldon", last_name: "Simeon", residence: "Lahaina, HI", description: "Exef Chef / Owner, Tin Roof")
 create(:contestant, pool: top_chef, first_name: "Shirley", last_name: "Chung", residence: "Orange County, CA", description: "Chef / Partner, Twenty Eight")
+
+%w(Steve Tom Jason Courtney Matt).each do |name|
+  create(:entry, pool: top_chef, name: name, points: 0)
+end

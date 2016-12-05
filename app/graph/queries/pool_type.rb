@@ -13,5 +13,11 @@ module Queries
 
       resolve ->(pool, _args, _context) { pool.contestants }
     end
+
+    connection :entries, EntryType.connection_type do
+      description "Entries for the pool"
+
+      resolve ->(pool, _args, _context) { pool.entries }
+    end
   end
 end

@@ -4,7 +4,7 @@ RSpec.describe Queries::PoolType do
   subject { Queries::PoolType }
 
   context "fields" do
-    let(:fields) { %w(id model_id title contestants GraphQL::Relay::Define::AssignConnection) }
+    let(:fields) { %w(id model_id title contestants entries GraphQL::Relay::Define::AssignConnection) }
 
     it "has the proper fields" do
       expect(subject.fields.keys).to match_array fields
@@ -28,6 +28,19 @@ RSpec.describe Queries::PoolType do
 
       it "is a list of contestants for that pool" do
         expect(resolved).to match_array contestants
+        expect(resolved.first.pool).to eq pool
+      end
+    end
+
+    describe "entries" do
+      subject { Queries::PoolType.fields["entries"] }
+      let(:pool) { create(:pool) }
+      let!(:entries) { create_list(:entry, 3, pool: pool) }
+      let!(:other_entry) { create(:entry) }
+      let(:resolved) { subject.resolve(pool, nil, nil).object }
+
+      it "is a list of entries for that pool" do
+        expect(resolved).to match_array entries
         expect(resolved.first.pool).to eq pool
       end
     end

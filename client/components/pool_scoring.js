@@ -3,11 +3,13 @@ import Relay from 'react-relay'
 
 import ContestantsList from 'components/contestants_list'
 import CreateContestantForm from 'components/create_contestant_form'
+import EntriesList from 'components/entries_list'
 
 class PoolScoring extends React.Component {
   render() {
     let { pool } = this.props.viewer
     let contestants = pool.contestants.edges.map(contestant => contestant.node)
+    let entries = pool.entries.edges.map(entry => entry.node)
 
     return (
       <div className='pool'>
@@ -17,6 +19,9 @@ class PoolScoring extends React.Component {
           <div className='contestants'>
             <ContestantsList contestants={contestants} />
             <CreateContestantForm pool={pool} />
+          </div>
+          <div className='entries'>
+            <EntriesList entries={entries} />
           </div>
         </div>
       </div>
@@ -45,6 +50,16 @@ export default Relay.createContainer(PoolScoring, {
                 last_name
                 residence
                 description
+              }
+            }
+          }
+          entries(first: 100) {
+            edges {
+              node {
+                id
+                model_id
+                name
+                points
               }
             }
           }

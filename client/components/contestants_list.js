@@ -8,6 +8,7 @@ export default class ContestantsList extends React.Component {
 
     return (
       <div className='contestants-list'>
+        <h3>Contestants</h3>
         {contestants.map(contestant => <ContestantRow key={contestant.id} contestant={contestant} />)}
       </div>
     )
