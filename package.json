@@ -7,8 +7,9 @@
   "author": "Matt DuBois <mattduboismatt@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "./node_modules/.bin/webpack --watch",
-    "lint": "standard"
+    "start": "webpack --watch",
+    "lint": "standard",
+    "postinstall": "webpack"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
@@ -20,16 +21,17 @@
     "babel-preset-react": "^6.16.0",
     "babel-relay-plugin": "^0.9.3",
     "babelify": "^7.3.0",
+    "standard": "^8.6.0"
+  },
+  "dependencies": {
     "graphql": "^0.8.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-relay": "^0.9.3",
     "react-router": "^3.0.0",
     "react-router-relay": "^0.13.5",
-    "standard": "^8.6.0",
     "webpack": "^2.1.0-beta"
   },
-  "dependencies": {},
   "standard": {
     "parser": "babel-eslint",
     "ignore": []

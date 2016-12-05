@@ -6,7 +6,7 @@ class PoolStandings extends React.Component {
     const { pool } = this.props.viewer
 
     return (
-      <div>
+      <div className='pool'>
         <h2>{pool.title}</h2>
         <div className='standings'>Standings</div>
       </div>
