@@ -17,4 +17,19 @@ RSpec.describe Pick do
     it { is_expected.to belong_to :entry }
     it { is_expected.to belong_to :contestant }
   end
+
+  describe "scopes" do
+    subject { described_class }
+
+    describe ".excluding_contestants" do
+      let(:pool) { create(:pool) }
+      let!(:picks) { create_list(:pick, 3, pool: pool) }
+      let(:contestant_ids) { picks.map { |pick| pick.contestant.id } }
+      let!(:other_picks) { create_list(:pick, 2, pool: pool) }
+
+      it "includes picks where the contestant ID was not passed in" do
+        expect(subject.excluding_contestants(contestant_ids)).to match_array other_picks
+      end
+    end
+  end
 end
