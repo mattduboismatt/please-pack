@@ -1,17 +1,20 @@
 import React from 'react'
 import Relay from 'react-relay'
 
-class PoolStandings extends React.Component {
+class PoolLayout extends React.Component {
   render() {
     let { pool } = this.props.viewer
 
     return (
-      <div className='standings'>Standings</div>
+      <div className='pool'>
+        <h2>{pool.title}</h2>
+        {this.props.children}
+      </div>
     )
   }
 }
 
-export default Relay.createContainer(PoolStandings, {
+export default Relay.createContainer(PoolLayout, {
   initialVariables: {
     model_id: null
   },

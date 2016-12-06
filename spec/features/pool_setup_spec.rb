@@ -1,13 +1,13 @@
 require "rails_helper"
 
-RSpec.describe "Scoring a pool", js: true do
+RSpec.describe "Setting up a pool", js: true do
   let(:pool) { create(:pool) }
   let!(:contestants) { create_list(:contestant, 3, pool: pool) }
   let!(:other_contestant) { create(:contestant) }
   let!(:entries) { create_list(:entry, 3, pool: pool) }
   let!(:other_entry) { create(:entry) }
 
-  before { visit "/pools/#{pool.id}/score" }
+  before { visit "/pools/#{pool.id}/setup" }
 
   describe "contestants" do
     it "displays a list of the contestants" do

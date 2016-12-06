@@ -5,9 +5,10 @@ import useRelay from 'react-router-relay'
 
 import App from 'layouts/app'
 import Layout from 'layouts/layout'
+import PoolLayout from 'layouts/pool'
 import Pools from 'components/pools'
 import PoolStandings from 'components/pool_standings'
-import PoolScoring from 'components/pool_scoring'
+import PoolSetup from 'components/pool_setup'
 import Admin from 'components/admin'
 
 const Empty = () => null
@@ -26,8 +27,10 @@ export default function AppRouter () {
       <Route path='/' component={App}>
         <Route component={Layout} >
           <IndexRoute component={Pools} queries={ViewerQueries} />
-          <Route path='pools/:poolId' component={PoolStandings} queries={ViewerQueries} prepareParams={preparePoolParams} />
-          <Route path='pools/:poolId/score' component={PoolScoring} queries={ViewerQueries} prepareParams={preparePoolParams} />
+          <Route path='pools/:poolId' component={PoolLayout} queries={ViewerQueries} prepareParams={preparePoolParams}>
+            <IndexRoute component={PoolStandings} queries={ViewerQueries} />
+            <Route path='setup' component={PoolSetup} queries={ViewerQueries} />
+          </Route>
           <Route path='admin' component={Admin} queries={ViewerQueries} />
           <Route path='*' component={Empty} />
         </Route>

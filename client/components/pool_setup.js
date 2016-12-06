@@ -6,32 +6,29 @@ import CreateContestantForm from 'components/create_contestant_form'
 import EntriesList from 'components/entries_list'
 import CreateEntryForm from 'components/create_entry_form'
 
-class PoolScoring extends React.Component {
+class PoolSetup extends React.Component {
   render() {
     let { pool } = this.props.viewer
     let contestants = pool.contestants.edges.map(contestant => contestant.node)
     let entries = pool.entries.edges.map(entry => entry.node)
 
     return (
-      <div className='pool'>
-        <h2>{pool.title}</h2>
-        <div className='scoring'>
-          <p>Scoring</p>
-          <div className='contestants'>
-            <ContestantsList contestants={contestants} />
-            <CreateContestantForm pool={pool} />
-          </div>
-          <div className='entries'>
-            <EntriesList entries={entries} />
-            <CreateEntryForm pool={pool} />
-          </div>
+      <div className='setup'>
+        <p>Setup</p>
+        <div className='contestants'>
+          <ContestantsList contestants={contestants} />
+          <CreateContestantForm pool={pool} />
+        </div>
+        <div className='entries'>
+          <EntriesList entries={entries} />
+          <CreateEntryForm pool={pool} />
         </div>
       </div>
     )
   }
 }
 
-export default Relay.createContainer(PoolScoring, {
+export default Relay.createContainer(PoolSetup, {
   initialVariables: {
     model_id: null
   },

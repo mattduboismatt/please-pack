@@ -7,13 +7,13 @@ export default class PoolRow extends React.Component {
     let poolPath = `/pools/${pool.model_id}`
 
     if (admin) {
-      var scorePoolLink = <Link to={poolPath + '/score'}>Score</Link>
+      var setupPoolLink = <Link to={poolPath + '/setup'}>Setup</Link>
     }
 
     return (
       <div className='pool'>
         <Link to={poolPath}>{pool.title}</Link>
-        {scorePoolLink}
+        {setupPoolLink}
       </div>
     )
   }

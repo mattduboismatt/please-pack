@@ -21,11 +21,11 @@ RSpec.describe "Admin Panel", js: true do
     expect(page).to have_text(/standings/i)
   end
 
-  it "displays a link to score the pool" do
+  it "displays a link to setup the pool" do
     pool = create(:pool)
 
     visit "/admin"
-    expect(page).to have_link("Score", href: "/pools/#{pool.id}/score")
+    expect(page).to have_link("Setup", href: "/pools/#{pool.id}/setup")
   end
 
   describe "adding a pool" do
