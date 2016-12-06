@@ -1,6 +1,23 @@
 import React from 'react'
+import { Link } from 'react-router'
 
-import PoolRow from 'components/pool_row'
+class PoolRow extends React.Component {
+  render() {
+    let { pool, admin } = this.props
+    let poolPath = `/pools/${pool.model_id}`
+
+    if (admin) {
+      var setupPoolLink = <Link to={poolPath + '/setup'}>Setup</Link>
+    }
+
+    return (
+      <div className='pool'>
+        <Link to={poolPath}>{pool.title}</Link>
+        {setupPoolLink}
+      </div>
+    )
+  }
+}
 
 export default class PoolsList extends React.Component {
   render() {
