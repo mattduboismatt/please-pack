@@ -22,7 +22,6 @@ export default Relay.createContainer(PoolStandings, {
         pool(model_id: $model_id) {
           id
           model_id
-          title
         }
       }
     `

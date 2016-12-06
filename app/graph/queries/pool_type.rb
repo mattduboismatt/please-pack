@@ -8,16 +8,7 @@ module Queries
     field :model_id, !types.Int, property: :id
     field :title, !types.String
 
-    connection :contestants, ContestantType.connection_type do
-      description "Contestants for the pool"
-
-      resolve ->(pool, _args, _context) { pool.contestants }
-    end
-
-    connection :entries, EntryType.connection_type do
-      description "Entries for the pool"
-
-      resolve ->(pool, _args, _context) { pool.entries }
-    end
+    connection :contestants, ContestantType.connection_type, "Contestants for the pool"
+    connection :entries, EntryType.connection_type, "Entries for the pool"
   end
 end

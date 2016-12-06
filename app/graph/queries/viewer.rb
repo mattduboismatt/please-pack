@@ -11,6 +11,12 @@ module Queries
       resolve ->(_object, args, _context) { Pool.find(args["model_id"]) }
     end
 
+    field :entry do
+      type !EntryType
+      argument :model_id, !types.ID, "The ID of the Entry"
+      resolve ->(_object, args, _context) { Entry.find(args["model_id"]) }
+    end
+
     connection :pools, PoolType.connection_type do
       description "All pools in order of id"
 

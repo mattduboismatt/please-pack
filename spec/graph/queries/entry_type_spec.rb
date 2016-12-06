@@ -4,7 +4,7 @@ RSpec.describe Queries::EntryType do
   subject { Queries::EntryType }
 
   context "fields" do
-    let(:fields) { %w(id model_id name points) }
+    let(:fields) { %w(id model_id name points pool) }
 
     it "has the proper fields" do
       expect(subject.fields.keys).to match_array fields

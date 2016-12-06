@@ -4,7 +4,7 @@ RSpec.describe Queries::Viewer do
   subject { Queries::Viewer }
 
   context "fields" do
-    let(:fields) { %w(id pools pool GraphQL::Relay::Define::AssignConnection) }
+    let(:fields) { %w(id pools pool entry GraphQL::Relay::Define::AssignConnection) }
 
     it "has the proper fields" do
       expect(subject.fields.keys).to match_array fields
