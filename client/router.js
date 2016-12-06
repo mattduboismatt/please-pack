@@ -10,7 +10,7 @@ import EntryLayout from 'layouts/entry'
 import Pools from 'components/pools'
 import PoolStandings from 'components/pool_standings'
 import PoolSetup from 'components/pool_setup'
-import EntrySelections from 'components/entry_selections'
+import EntryPicks from 'components/entry_picks'
 import Admin from 'components/admin'
 
 const Empty = () => null
@@ -38,7 +38,7 @@ export default function AppRouter () {
             <Route path='setup' component={PoolSetup} queries={ViewerQueries} />
           </Route>
           <Route path='entries/:entryId' component={EntryLayout} queries={ViewerQueries} prepareParams={prepareEntryParams}>
-            <Route path='selections' component={EntrySelections} queries={ViewerQueries} />
+            <Route path='picks' component={EntryPicks} queries={ViewerQueries} />
           </Route>
           <Route path='admin' component={Admin} queries={ViewerQueries} />
           <Route path='*' component={Empty} />

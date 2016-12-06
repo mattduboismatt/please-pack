@@ -53,11 +53,11 @@ RSpec.describe "Setting up a pool", js: true do
         entries.each do |entry|
           expect(page).to have_text entry.name
           expect(page).to have_text entry.points
-          expect(page).to have_link(text: "Make Selections", href: "/entries/#{entry.id}/selections")
+          expect(page).to have_link(text: "Make Picks", href: "/entries/#{entry.id}/picks")
         end
       end
 
-      all(".make-selections").first.click
+      all(".make-picks").first.click
       expect(page).to have_text "Entry:"
       expect(page).to have_text "Points:"
     end

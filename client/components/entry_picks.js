@@ -1,12 +1,12 @@
 import React from 'react'
 import Relay from 'react-relay'
 
-class EntrySelectionsInputRow extends React.Component {
+class EntryPicksInputRow extends React.Component {
   render() {
     let { contestant } = this.props
 
     return (
-      <label className='entry-selection-row'>
+      <label className='entry-pick-row'>
         <input type='checkbox' value={contestant.model_id} />
         {contestant.first_name}
       </label>
@@ -14,7 +14,7 @@ class EntrySelectionsInputRow extends React.Component {
   }
 }
 
-class EntrySelections extends React.Component {
+class EntryPicks extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
   }
@@ -23,10 +23,10 @@ class EntrySelections extends React.Component {
     let contestants = this.props.viewer.entry.pool.contestants.edges.map(contestant => contestant.node)
 
     return (
-      <div className='selections'>
-        <p>Selections</p>
+      <div className='picks'>
+        <p>Picks</p>
         <form onSubmit={this.handleSubmit}>
-          {contestants.map(contestant => <EntrySelectionsInputRow key={contestant.id} contestant={contestant} />)}
+          {contestants.map(contestant => <EntryPicksInputRow key={contestant.id} contestant={contestant} />)}
           <input type='submit' value='Save' />
         </form>
       </div>
@@ -34,7 +34,7 @@ class EntrySelections extends React.Component {
   }
 }
 
-export default Relay.createContainer(EntrySelections, {
+export default Relay.createContainer(EntryPicks, {
   initialVariables: {
     model_id: null
   },

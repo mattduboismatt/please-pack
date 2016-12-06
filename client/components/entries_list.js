@@ -5,13 +5,13 @@ class EntryRow extends React.Component {
   render() {
     let { entry } = this.props
 
-    let entrySelectionsLink = `/entries/${entry.model_id}/selections`
+    let entryPicksLink = `/entries/${entry.model_id}/picks`
 
     return(
       <div className='entry'>
         <span>{entry.name}</span>
         <span>{entry.points}</span>
-        <Link to={entrySelectionsLink} className='make-selections'>Make Selections</Link>
+        <Link to={entryPicksLink} className='make-picks'>Make Picks</Link>
       </div>
     )
   }
