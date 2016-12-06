@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205211053) do
+ActiveRecord::Schema.define(version: 20161206203235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 20161205211053) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.index ["pool_id"], name: "index_entries_on_pool_id", using: :btree
+  end
+
+  create_table "picks", force: :cascade do |t|
+    t.integer  "entry_id",      null: false
+    t.integer  "contestant_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["contestant_id"], name: "index_picks_on_contestant_id", using: :btree
+    t.index ["entry_id"], name: "index_picks_on_entry_id", using: :btree
   end
 
   create_table "pools", force: :cascade do |t|
