@@ -28,6 +28,7 @@ RSpec.describe "Homepage", js: true do
     visit "/"
     expect(page).to have_text(/#{pool.title}/i)
     expect(page).to_not have_link("Setup")
+    expect(page).to_not have_link("Score")
   end
 
   it "falls back to an empty page" do
