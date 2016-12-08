@@ -5,7 +5,7 @@ module Mutations
     input_field :entry_id, !types.ID
     input_field :contestant_ids, !types[types.ID]
 
-    return_field :picks, types[Queries::PickType]
+    return_field :entry, Queries::EntryType
 
     resolve ->(inputs, _context) do
       entry = Entry.find(inputs[:entry_id])
@@ -18,7 +18,7 @@ module Mutations
       end
 
       {
-        picks: picks
+        entry: Entry.find(entry.id)
       }
     end
   end
