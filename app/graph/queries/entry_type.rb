@@ -9,5 +9,6 @@ module Queries
     field :name, !types.String
     field :points, !types.Int
     field :pool, PoolType
+    field :picks, !types[PickType]
   end
 end
