@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206203235) do
+ActiveRecord::Schema.define(version: 20161208225425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contestant_scores", force: :cascade do |t|
+    t.integer  "contestant_id", null: false
+    t.integer  "score_id",      null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["contestant_id"], name: "index_contestant_scores_on_contestant_id", using: :btree
+    t.index ["score_id"], name: "index_contestant_scores_on_score_id", using: :btree
+  end
 
   create_table "contestants", force: :cascade do |t|
     t.integer  "pool_id",     null: false
@@ -48,6 +57,13 @@ ActiveRecord::Schema.define(version: 20161206203235) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.integer  "points",     default: 1, null: false
+    t.string   "mechanism",              null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end
