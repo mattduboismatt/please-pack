@@ -6,13 +6,14 @@ import CreatePoolForm from 'components/create_pool_form'
 
 class Admin extends React.Component {
   render() {
-    let pools = this.props.viewer.pools.edges.map(pool => pool.node)
+    let { viewer } = this.props
+    let { pools } = this.props.viewer
 
     return (
       <div>
         <h2>Super Secret Admin Panel</h2>
         <PoolsList pools={pools} admin={true}/>
-        <CreatePoolForm viewer={this.props.viewer}/>
+        <CreatePoolForm viewer={viewer}/>
       </div>
     )
   }
@@ -24,13 +25,7 @@ export default Relay.createContainer(Admin, {
       fragment on Viewer {
         id
         pools(first: 100) {
-          edges {
-            node {
-              id
-              model_id
-              title
-            }
-          }
+          ${PoolsList.getFragment('pools')}
         }
       }
     `

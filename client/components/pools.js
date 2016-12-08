@@ -5,7 +5,7 @@ import PoolsList from 'components/pools_list'
 
 class Pools extends React.Component {
   render() {
-    let pools = this.props.viewer.pools.edges.map(pool => pool.node)
+    let { pools } = this.props.viewer
 
     return (
       <div>
@@ -22,13 +22,7 @@ export default Relay.createContainer(Pools, {
       fragment on Viewer {
         id
         pools(first: 100) {
-          edges {
-            node {
-              id
-              model_id
-              title
-            }
-          }
+          ${PoolsList.getFragment('pools')}
         }
       }
     `

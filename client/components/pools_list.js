@@ -1,27 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router'
+import Relay from 'react-relay'
 
-class PoolRow extends React.Component {
+import PoolRow from 'components/pool_row'
+
+class PoolsList extends React.Component {
   render() {
-    let { pool, admin } = this.props
-    let poolPath = `/pools/${pool.model_id}`
-
-    if (admin) {
-      var setupPoolLink = <Link to={poolPath + '/setup'}>Setup</Link>
-    }
-
-    return (
-      <div className='pool'>
-        <Link to={poolPath}>{pool.title}</Link>
-        {setupPoolLink}
-      </div>
-    )
-  }
-}
-
-export default class PoolsList extends React.Component {
-  render() {
-    let { pools, admin } = this.props
+    let { admin } = this.props
+    let pools = this.props.pools.edges.map(pool => pool.node)
 
     return (
       <div className='pools-list'>
@@ -30,3 +15,18 @@ export default class PoolsList extends React.Component {
     )
   }
 }
+
+export default Relay.createContainer(PoolsList, {
+  fragments: {
+    pools: () => Relay.QL`
+      fragment on PoolTypeConnection {
+        edges {
+          node {
+            id
+            ${PoolRow.getFragment('pool')}
+          }
+        }
+      }
+    `
+  }
+})

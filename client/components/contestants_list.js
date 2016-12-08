@@ -1,23 +1,11 @@
 import React from 'react'
+import Relay from 'react-relay'
 
-class ContestantRow extends React.Component {
+import ContestantRow from 'components/contestant_row'
+
+class ContestantsList extends React.Component {
   render() {
-    let { contestant } = this.props
-
-    return(
-      <div className='contestant'>
-        <span>{contestant.first_name}</span>
-        <span>{contestant.last_name}</span>
-        <span>{contestant.residence}</span>
-        <span>{contestant.description}</span>
-      </div>
-    )
-  }
-}
-
-export default class ContestantsList extends React.Component {
-  render() {
-    let { contestants } = this.props
+    let contestants = this.props.contestants.edges.map(contestant => contestant.node)
 
     return (
       <div className='contestants-list'>
@@ -27,3 +15,18 @@ export default class ContestantsList extends React.Component {
     )
   }
 }
+
+export default Relay.createContainer(ContestantsList, {
+  fragments: {
+    contestants: () => Relay.QL`
+      fragment on ContestantTypeConnection {
+        edges {
+          node {
+            id
+            ${ContestantRow.getFragment('contestant')}
+          }
+        }
+      }
+    `
+  }
+})

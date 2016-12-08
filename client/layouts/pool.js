@@ -23,8 +23,6 @@ export default Relay.createContainer(PoolLayout, {
     viewer: () => Relay.QL`
       fragment on Viewer {
         pool(model_id: $model_id) {
-          id
-          model_id
           title
         }
       }

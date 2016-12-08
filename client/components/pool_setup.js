@@ -9,18 +9,16 @@ import CreateEntryForm from 'components/create_entry_form'
 class PoolSetup extends React.Component {
   render() {
     let { pool } = this.props.viewer
-    let contestants = pool.contestants.edges.map(contestant => contestant.node)
-    let entries = pool.entries.edges.map(entry => entry.node)
 
     return (
       <div className='setup'>
         <p>Setup</p>
         <div className='contestants'>
-          <ContestantsList contestants={contestants} />
+          <ContestantsList contestants={pool.contestants} />
           <CreateContestantForm pool={pool} />
         </div>
         <div className='entries'>
-          <EntriesList entries={entries} />
+          <EntriesList entries={pool.entries} admin={true} />
           <CreateEntryForm pool={pool} />
         </div>
       </div>
@@ -37,30 +35,13 @@ export default Relay.createContainer(PoolSetup, {
     viewer: () => Relay.QL`
       fragment on Viewer {
         pool(model_id: $model_id) {
-          id
           model_id
           title
-          contestants(first: 100) {
-            edges {
-              node {
-                id
-                model_id
-                first_name
-                last_name
-                residence
-                description
-              }
-            }
-          }
           entries(first: 100) {
-            edges {
-              node {
-                id
-                model_id
-                name
-                points
-              }
-            }
+            ${EntriesList.getFragment('entries')}
+          }
+          contestants(first: 100) {
+            ${ContestantsList.getFragment('contestants')}
           }
         }
       }

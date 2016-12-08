@@ -93,7 +93,7 @@
           "possibleTypes": [
             {
               "kind": "OBJECT",
-              "name": "Contestant",
+              "name": "ContestantType",
               "ofType": null
             },
             {
@@ -103,7 +103,7 @@
             },
             {
               "kind": "OBJECT",
-              "name": "Pool",
+              "name": "PoolType",
               "ofType": null
             },
             {
@@ -201,7 +201,7 @@
                 "name": "Non-Null",
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "Pool",
+                  "name": "PoolType",
                   "ofType": null
                 }
               },
@@ -255,7 +255,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "PoolConnection",
+                "name": "PoolTypeConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -308,7 +308,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "PoolConnection",
+                "name": "PoolTypeConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -328,7 +328,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Pool",
+          "name": "PoolType",
           "description": "A tournament pool",
           "fields": [
             {
@@ -377,9 +377,13 @@
                 }
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "ContestantConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": "Non-Null",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ContestantTypeConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -430,9 +434,13 @@
                 }
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "EntryTypeConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": "Non-Null",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "EntryTypeConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -483,9 +491,13 @@
                 }
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "EntryTypeConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": "Non-Null",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "EntryTypeConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -578,7 +590,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "ContestantConnection",
+          "name": "ContestantTypeConnection",
           "description": null,
           "fields": [
             {
@@ -592,7 +604,7 @@
                 "name": "List",
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "ContestantEdge",
+                  "name": "ContestantTypeEdge",
                   "ofType": null
                 }
               },
@@ -627,7 +639,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "ContestantEdge",
+          "name": "ContestantTypeEdge",
           "description": null,
           "fields": [
             {
@@ -656,7 +668,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Contestant",
+                "name": "ContestantType",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -672,7 +684,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Contestant",
+          "name": "ContestantType",
           "description": "A contestant in a pool",
           "fields": [
             {
@@ -1049,7 +1061,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Pool",
+                "name": "PoolType",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1069,7 +1081,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "PoolConnection",
+          "name": "PoolTypeConnection",
           "description": null,
           "fields": [
             {
@@ -1083,7 +1095,7 @@
                 "name": "List",
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "PoolEdge",
+                  "name": "PoolTypeEdge",
                   "ofType": null
                 }
               },
@@ -1118,7 +1130,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "PoolEdge",
+          "name": "PoolTypeEdge",
           "description": null,
           "fields": [
             {
@@ -1147,7 +1159,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Pool",
+                "name": "PoolType",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1282,7 +1294,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "PoolEdge",
+                "name": "PoolTypeEdge",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1372,7 +1384,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "ContestantEdge",
+                "name": "ContestantTypeEdge",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1386,7 +1398,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Pool",
+                "name": "PoolType",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1520,7 +1532,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Pool",
+                "name": "PoolType",
                 "ofType": null
               },
               "isDeprecated": false,
