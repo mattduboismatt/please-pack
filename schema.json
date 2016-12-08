@@ -1758,19 +1758,15 @@
               "deprecationReason": null
             },
             {
-              "name": "picks",
+              "name": "entry",
               "description": null,
               "args": [
 
               ],
               "type": {
-                "kind": "LIST",
-                "name": "List",
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Pick",
-                  "ofType": null
-                }
+                "kind": "OBJECT",
+                "name": "Entry",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null

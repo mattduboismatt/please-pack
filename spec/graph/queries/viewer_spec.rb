@@ -42,4 +42,27 @@ RSpec.describe Queries::Viewer do
       end
     end
   end
+
+  context "entry" do
+    subject { Queries::Viewer.fields["entry"] }
+    let!(:entries) { create_list(:entry, 2) }
+    let(:entry) { create(:entry) }
+    let(:args) { { "model_id" => entry_id } }
+
+    context "success" do
+      let(:entry_id) { entry.id }
+      it "is the entry" do
+        expect(subject.resolve(nil, args, nil)).to eq entry
+      end
+    end
+
+    context "failure" do
+      let(:entry_id) { 9999 }
+      it "raises an error" do
+        expect do
+          subject.resolve(nil, args, nil)
+        end.to raise_error ActiveRecord::RecordNotFound
+      end
+    end
+  end
 end
