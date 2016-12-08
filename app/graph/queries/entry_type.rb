@@ -1,6 +1,6 @@
 module Queries
   EntryType = GraphQL::ObjectType.define do
-    name "EntryType"
+    name "Entry"
     description "An entry in a pool"
     interfaces [NodeIdentification.interface]
     global_id_field :id

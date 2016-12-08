@@ -20,7 +20,7 @@ class EntriesList extends React.Component {
 export default Relay.createContainer(EntriesList, {
   fragments: {
     entries: () => Relay.QL`
-      fragment on EntryTypeConnection {
+      fragment on EntryConnection {
         edges {
           node {
             id

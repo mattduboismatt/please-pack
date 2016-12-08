@@ -93,17 +93,22 @@
           "possibleTypes": [
             {
               "kind": "OBJECT",
-              "name": "ContestantType",
+              "name": "Contestant",
               "ofType": null
             },
             {
               "kind": "OBJECT",
-              "name": "EntryType",
+              "name": "Entry",
               "ofType": null
             },
             {
               "kind": "OBJECT",
-              "name": "PoolType",
+              "name": "Pick",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Pool",
               "ofType": null
             },
             {
@@ -152,7 +157,7 @@
                 "name": "Non-Null",
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "EntryType",
+                  "name": "Entry",
                   "ofType": null
                 }
               },
@@ -201,7 +206,7 @@
                 "name": "Non-Null",
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "PoolType",
+                  "name": "Pool",
                   "ofType": null
                 }
               },
@@ -255,7 +260,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "PoolTypeConnection",
+                "name": "PoolConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -308,7 +313,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "PoolTypeConnection",
+                "name": "PoolConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -328,7 +333,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "PoolType",
+          "name": "Pool",
           "description": "A tournament pool",
           "fields": [
             {
@@ -381,7 +386,7 @@
                 "name": "Non-Null",
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "ContestantTypeConnection",
+                  "name": "ContestantConnection",
                   "ofType": null
                 }
               },
@@ -438,7 +443,7 @@
                 "name": "Non-Null",
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "EntryTypeConnection",
+                  "name": "EntryConnection",
                   "ofType": null
                 }
               },
@@ -495,7 +500,7 @@
                 "name": "Non-Null",
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "EntryTypeConnection",
+                  "name": "EntryConnection",
                   "ofType": null
                 }
               },
@@ -590,7 +595,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "ContestantTypeConnection",
+          "name": "ContestantConnection",
           "description": null,
           "fields": [
             {
@@ -604,7 +609,7 @@
                 "name": "List",
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "ContestantTypeEdge",
+                  "name": "ContestantEdge",
                   "ofType": null
                 }
               },
@@ -639,7 +644,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "ContestantTypeEdge",
+          "name": "ContestantEdge",
           "description": null,
           "fields": [
             {
@@ -668,7 +673,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "ContestantType",
+                "name": "Contestant",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -684,7 +689,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "ContestantType",
+          "name": "Contestant",
           "description": "A contestant in a pool",
           "fields": [
             {
@@ -884,7 +889,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "EntryTypeConnection",
+          "name": "EntryConnection",
           "description": null,
           "fields": [
             {
@@ -898,7 +903,7 @@
                 "name": "List",
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "EntryTypeEdge",
+                  "name": "EntryEdge",
                   "ofType": null
                 }
               },
@@ -933,7 +938,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "EntryTypeEdge",
+          "name": "EntryEdge",
           "description": null,
           "fields": [
             {
@@ -962,7 +967,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "EntryType",
+                "name": "Entry",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -978,7 +983,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "EntryType",
+          "name": "Entry",
           "description": "An entry in a pool",
           "fields": [
             {
@@ -1036,6 +1041,28 @@
               "deprecationReason": null
             },
             {
+              "name": "picks",
+              "description": null,
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": "Non-Null",
+                "ofType": {
+                  "kind": "LIST",
+                  "name": "List",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Pick",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "points",
               "description": null,
               "args": [
@@ -1061,7 +1088,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "PoolType",
+                "name": "Pool",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1081,7 +1108,96 @@
         },
         {
           "kind": "OBJECT",
-          "name": "PoolTypeConnection",
+          "name": "Pick",
+          "description": "A join between entry and contestant",
+          "fields": [
+            {
+              "name": "contestant",
+              "description": null,
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": "Non-Null",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Contestant",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "entry",
+              "description": null,
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": "Non-Null",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Entry",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "id",
+              "description": null,
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": "Non-Null",
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "model_id",
+              "description": null,
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": "Non-Null",
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "PoolConnection",
           "description": null,
           "fields": [
             {
@@ -1095,7 +1211,7 @@
                 "name": "List",
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "PoolTypeEdge",
+                  "name": "PoolEdge",
                   "ofType": null
                 }
               },
@@ -1130,7 +1246,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "PoolTypeEdge",
+          "name": "PoolEdge",
           "description": null,
           "fields": [
             {
@@ -1159,7 +1275,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "PoolType",
+                "name": "Pool",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1258,6 +1374,33 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "save_picks",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": "Non-Null",
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "SavePicksInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "SavePicksPayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -1294,7 +1437,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "PoolTypeEdge",
+                "name": "PoolEdge",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1384,7 +1527,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "ContestantTypeEdge",
+                "name": "ContestantEdge",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1398,7 +1541,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "PoolType",
+                "name": "Pool",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1518,7 +1661,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "EntryTypeEdge",
+                "name": "EntryEdge",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1532,7 +1675,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "PoolType",
+                "name": "Pool",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1586,6 +1729,104 @@
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SavePicksPayload",
+          "description": "Autogenerated return type of SavePicks",
+          "fields": [
+            {
+              "name": "clientMutationId",
+              "description": "A unique identifier for the client performing the mutation.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "picks",
+              "description": null,
+              "args": [
+
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": "List",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Pick",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "SavePicksInput",
+          "description": "Autogenerated input type of SavePicks",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "clientMutationId",
+              "description": "A unique identifier for the client performing the mutation.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "entry_id",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": "Non-Null",
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "contestant_ids",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": "Non-Null",
+                "ofType": {
+                  "kind": "LIST",
+                  "name": "List",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null

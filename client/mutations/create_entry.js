@@ -7,7 +7,7 @@ export default class CreateEntryMutation extends Mutation {
 
   getVariables() {
     return {
-      pool_id: this.props.pool.id,
+      pool_id: this.props.pool_id,
       name: this.props.name
     }
   }
@@ -25,7 +25,7 @@ export default class CreateEntryMutation extends Mutation {
     return [{
       type: 'RANGE_ADD',
       parentName: 'pool',
-      parentID: this.props.pool.id,
+      parentID: this.props.pool_id,
       connectionName: 'entries',
       edgeName: 'entry_edge',
       rangeBehaviors: {

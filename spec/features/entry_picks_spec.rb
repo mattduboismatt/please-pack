@@ -16,10 +16,10 @@ RSpec.describe "Entry Picks", js: true do
 
   it "displays a form for selecting contestants within that pool" do
     within(".entry .picks") do
-      expect(all(".entry-pick-row").count).to eq contestants.count
+      expect(all("input[type='checkbox']").count).to eq contestants.count
       contestants.each do |contestant|
         expect(page).to have_text(contestant.first_name)
-        expect(page).to have_css("input[value='#{contestant.id}']")
+        expect(page).to have_css("input[value='#{contestant.first_name}']")
       end
     end
   end

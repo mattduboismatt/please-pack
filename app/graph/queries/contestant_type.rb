@@ -1,6 +1,6 @@
 module Queries
   ContestantType = GraphQL::ObjectType.define do
-    name "ContestantType"
+    name "Contestant"
     description "A contestant in a pool"
     interfaces [NodeIdentification.interface]
     global_id_field :id

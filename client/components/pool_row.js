@@ -23,7 +23,7 @@ class PoolRow extends React.Component {
 export default Relay.createContainer(PoolRow, {
   fragments: {
     pool: () => Relay.QL`
-      fragment on PoolType {
+      fragment on Pool {
         model_id
         title
       }

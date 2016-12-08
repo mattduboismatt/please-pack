@@ -3,7 +3,7 @@ import Relay from 'react-relay'
 
 import CreateEntryMutation from 'mutations/create_entry'
 
-export default class CreateEntryForm extends React.Component {
+class CreateEntryForm extends React.Component {
   state = { value: '' }
 
   handleChange = (e) => {
@@ -12,7 +12,7 @@ export default class CreateEntryForm extends React.Component {
 
   handleSubmit = () => {
     let mutation = new CreateEntryMutation({
-      pool: this.props.pool,
+      pool_id: this.props.pool.id,
       name: this.state.value
     })
 
@@ -39,3 +39,13 @@ export default class CreateEntryForm extends React.Component {
     )
   }
 }
+
+export default Relay.createContainer(CreateEntryForm, {
+  fragments: {
+    pool: () => Relay.QL`
+      fragment on Pool {
+        id
+      }
+    `
+  }
+})

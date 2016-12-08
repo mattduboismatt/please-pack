@@ -1,6 +1,6 @@
 module Queries
   PoolType = GraphQL::ObjectType.define do
-    name "PoolType"
+    name "Pool"
     description "A tournament pool"
     interfaces [NodeIdentification.interface]
     global_id_field :id

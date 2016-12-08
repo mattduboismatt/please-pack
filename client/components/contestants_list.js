@@ -19,7 +19,7 @@ class ContestantsList extends React.Component {
 export default Relay.createContainer(ContestantsList, {
   fragments: {
     contestants: () => Relay.QL`
-      fragment on ContestantTypeConnection {
+      fragment on ContestantConnection {
         edges {
           node {
             id

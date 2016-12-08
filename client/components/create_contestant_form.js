@@ -3,7 +3,7 @@ import Relay from 'react-relay'
 
 import CreateContestantMutation from 'mutations/create_contestant'
 
-export default class CreateContestantForm extends React.Component {
+class CreateContestantForm extends React.Component {
   handleSubmit = () => {
     let mutation = new CreateContestantMutation({
       pool_id: this.props.pool.id,
@@ -42,3 +42,13 @@ export default class CreateContestantForm extends React.Component {
     )
   }
 }
+
+export default Relay.createContainer(CreateContestantForm, {
+  fragments: {
+    pool: () => Relay.QL`
+      fragment on Pool {
+        id
+      }
+    `
+  }
+})

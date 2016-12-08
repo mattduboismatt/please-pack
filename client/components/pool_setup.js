@@ -35,14 +35,14 @@ export default Relay.createContainer(PoolSetup, {
     viewer: () => Relay.QL`
       fragment on Viewer {
         pool(model_id: $model_id) {
-          model_id
-          title
           entries(first: 100) {
             ${EntriesList.getFragment('entries')}
           }
           contestants(first: 100) {
             ${ContestantsList.getFragment('contestants')}
           }
+          ${CreateEntryForm.getFragment('pool')}
+          ${CreateContestantForm.getFragment('pool')}
         }
       }
     `

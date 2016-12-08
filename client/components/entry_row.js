@@ -24,7 +24,7 @@ class EntryRow extends React.Component {
 export default Relay.createContainer(EntryRow, {
   fragments: {
     entry: () => Relay.QL`
-      fragment on EntryType {
+      fragment on Entry {
         model_id
         name
         points

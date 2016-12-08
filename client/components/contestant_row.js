@@ -20,7 +20,7 @@ class ContestantRow extends React.Component {
 export default Relay.createContainer(ContestantRow, {
   fragments: {
     contestant: () => Relay.QL`
-      fragment on ContestantType {
+      fragment on Contestant {
         first_name
         last_name
         residence

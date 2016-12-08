@@ -19,7 +19,7 @@ class PoolsList extends React.Component {
 export default Relay.createContainer(PoolsList, {
   fragments: {
     pools: () => Relay.QL`
-      fragment on PoolTypeConnection {
+      fragment on PoolConnection {
         edges {
           node {
             id
