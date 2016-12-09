@@ -42,6 +42,7 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
     ast (2.3.0)
+    awesome_print (1.7.0)
     bitters (1.5.0)
       bourbon (~> 5.0.0.beta.7)
       sass (~> 3.4)
@@ -265,6 +266,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   bitters
   bourbon
   capybara

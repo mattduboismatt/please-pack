@@ -2,9 +2,11 @@ source "https://rubygems.org"
 
 ruby "2.3.1"
 
+gem "awesome_print"
 gem "bitters"
 gem "bourbon"
 gem "coffee-rails"
+gem "factory_girl_rails"
 gem "graphql", "< 0.19.0"
 gem "graphql-relay"
 gem "haml"
@@ -20,7 +22,6 @@ gem "uglifier"
 
 group :development, :test do
   gem "database_cleaner"
-  gem "factory_girl_rails"
   gem "faker"
   gem "graphiql-rails"
   gem "magic_lamp"
