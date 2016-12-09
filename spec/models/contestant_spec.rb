@@ -18,4 +18,15 @@ RSpec.describe Contestant do
     it { is_expected.to have_many :contestant_scores }
     it { is_expected.to have_many(:scores).through(:contestant_scores) }
   end
+
+  describe "#points" do
+    let!(:contestant_score) { create(:contestant_score, contestant: subject) }
+    let!(:other_contestant_score) { create(:contestant_score, contestant: subject) }
+    let!(:unknown_contestant_score) { create(:contestant_score) }
+    let(:expected_points) { [contestant_score, other_contestant_score].map(&:score).map(&:points).sum }
+
+    it "is the sum of the points of all scores" do
+      expect(subject.points).to eq expected_points
+    end
+  end
 end

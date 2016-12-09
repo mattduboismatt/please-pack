@@ -10,5 +10,6 @@ module Queries
     field :last_name, types.String
     field :residence, types.String
     field :description, types.String
+    field :points, !types.Int
   end
 end

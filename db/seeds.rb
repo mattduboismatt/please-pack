@@ -21,11 +21,11 @@ sam = create(:contestant, pool: top_chef, first_name: "Sam", last_name: "Talbot"
 sheldon = create(:contestant, pool: top_chef, first_name: "Sheldon", last_name: "Simeon", residence: "Lahaina, HI", description: "Exef Chef / Owner, Tin Roof")
 shirley = create(:contestant, pool: top_chef, first_name: "Shirley", last_name: "Chung", residence: "Orange County, CA", description: "Chef / Partner, Twenty Eight")
 
-matt = create(:entry, pool: top_chef, name: "Matt", points: 0)
-tom = create(:entry, pool: top_chef, name: "Tom", points: 0)
-jason = create(:entry, pool: top_chef, name: "Jason", points: 0)
-courtney = create(:entry, pool: top_chef, name: "Courtney", points: 0)
-steve = create(:entry, pool: top_chef, name: "Steve", points: 0)
+matt = create(:entry, pool: top_chef, name: "Matt")
+tom = create(:entry, pool: top_chef, name: "Tom")
+jason = create(:entry, pool: top_chef, name: "Jason")
+courtney = create(:entry, pool: top_chef, name: "Courtney")
+steve = create(:entry, pool: top_chef, name: "Steve")
 
 [sheldon, shirley, brooke, emily, john, jamie].each { |contestant| create(:pick, entry: matt, contestant: contestant) }
 [sam, silvia, shirley, brooke, sylva, jamie].each { |contestant| create(:pick, entry: steve, contestant: contestant) }

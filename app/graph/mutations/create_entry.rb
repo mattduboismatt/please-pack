@@ -10,10 +10,7 @@ module Mutations
 
     resolve ->(inputs, _context) do
       pool = Queries::NodeIdentification.object_from_id(inputs[:pool_id], {})
-      entry = pool.entries.create!(
-        name: inputs[:name],
-        points: 0
-      )
+      entry = pool.entries.create!(name: inputs[:name])
 
       connection = GraphQL::Relay::RelationConnection.new(pool.entries, {})
 
