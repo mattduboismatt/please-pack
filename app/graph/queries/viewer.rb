@@ -8,7 +8,9 @@ module Queries
     field :pool do
       type !PoolType
       argument :model_id, !types.ID, "The ID of the Pool"
-      resolve ->(_object, args, _context) { Pool.find(args["model_id"]) }
+      resolve ->(_object, args, _context) do
+        Pool.includes(contestants: :scores, entries: { contestants: :scores }).find(args["model_id"])
+      end
     end
 
     field :entry do

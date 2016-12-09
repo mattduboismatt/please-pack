@@ -8,7 +8,16 @@ module Queries
     field :model_id, !types.Int, property: :id
     field :title, !types.String
 
-    connection :contestants, !ContestantType.connection_type, "Contestants for the pool"
-    connection :entries, !EntryType.connection_type, "Entries for the pool"
+    connection :contestants do
+      type !ContestantType.connection_type
+      description "Contestants for the pool"
+      resolve ->(object, _args, _context) { object.contestants.sort_by(&:points).reverse }
+    end
+
+    connection :entries do
+      type !EntryType.connection_type
+      description "Entries for the pool"
+      resolve ->(object, _args, _context) { object.entries.sort_by(&:points).reverse }
+    end
   end
 end
