@@ -32,3 +32,15 @@ steve = create(:entry, pool: top_chef, name: "Steve")
 [jamie, sam, sheldon, shirley, silvia, brooke].each { |contestant| create(:pick, entry: tom, contestant: contestant) }
 [brooke, casey, jim, jamie, john, annie].each { |contestant| create(:pick, entry: jason, contestant: contestant) }
 [silvia, jim, sam, shirley, sylva, brooke].each { |contestant| create(:pick, entry: courtney, contestant: contestant) }
+
+week1 = build(:score, points: 1, mechanism: Score::MECHANISMS::ADVANCEMENT)
+week1.contestants << top_chef.contestants.reject { |contestant| [gerald].include?(contestant) }
+week1.save!
+
+week2 = build(:score, points: 1, mechanism: Score::MECHANISMS::ADVANCEMENT)
+week2.contestants << top_chef.contestants.reject { |contestant| [gerald, annie].include?(contestant) }
+week2.save!
+
+week2_ww = build(:score, points: 2, mechanism: Score::MECHANISMS::WEEKLY_WINNER)
+week2_ww.contestants << casey
+week2_ww.save!

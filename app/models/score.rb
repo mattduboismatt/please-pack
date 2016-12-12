@@ -10,6 +10,7 @@ class Score < ApplicationRecord
   end
 
   has_many :contestant_scores
+  has_many :contestants, through: :contestant_scores
 
   validates :points, :mechanism, presence: true
   validates :mechanism, inclusion: { in: MECHANISMS.all }

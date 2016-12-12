@@ -4,7 +4,7 @@ RSpec.describe Queries::Viewer do
   subject { Queries::Viewer }
 
   context "fields" do
-    let(:fields) { %w(id pools pool entry GraphQL::Relay::Define::AssignConnection) }
+    let(:fields) { %w(id pools pool entry scores score_mechanisms GraphQL::Relay::Define::AssignConnection) }
 
     it "has the proper fields" do
       expect(subject.fields.keys).to match_array fields
@@ -63,6 +63,14 @@ RSpec.describe Queries::Viewer do
           subject.resolve(nil, args, nil)
         end.to raise_error ActiveRecord::RecordNotFound
       end
+    end
+  end
+
+  context "score_mechanisms" do
+    subject { Queries::Viewer.fields["score_mechanisms"] }
+
+    it "is all score mechanisms as an array of strings" do
+      expect(subject.resolve(nil, nil, nil)).to match_array Score::MECHANISMS.all
     end
   end
 end

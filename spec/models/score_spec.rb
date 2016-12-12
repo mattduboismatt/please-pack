@@ -17,5 +17,6 @@ RSpec.describe Score do
 
   describe "associations" do
     it { is_expected.to have_many :contestant_scores }
+    it { is_expected.to have_many(:contestants).through(:contestant_scores) }
   end
 end

@@ -79,3 +79,6 @@ Style/FrozenStringLiteralComment:
 
 Style/Lambda:
   Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false

@@ -24,5 +24,17 @@ module Queries
 
       resolve ->(_object, _args, _context) { Pool.all }
     end
+
+    field :score_mechanisms do
+      type !types[types.String]
+      description "Options for the score mechanism"
+      resolve ->(_object, _args, _context) { Score::MECHANISMS.all }
+    end
+
+    connection :scores, ScoreType.connection_type do
+      description "All scores in order of id"
+
+      resolve ->(_object, _args, _context) { Score.all }
+    end
   end
 end

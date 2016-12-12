@@ -7,5 +7,6 @@ module Mutations
     field :create_contestant, field: CreateContestant.field
     field :create_entry, field: CreateEntry.field
     field :save_picks, field: SavePicks.field
+    field :create_score, field: CreateScore.field
   end
 end
