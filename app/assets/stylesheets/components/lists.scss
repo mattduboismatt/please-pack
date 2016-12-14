@@ -1,0 +1,67 @@
+@mixin card {
+  background-color: $light-purple;
+  padding: 5px 25px;
+  font-weight: 700;
+  font-size: 24px;
+  border-radius: $base-border-radius;
+}
+
+.entries-list, .contestants-list, .pools-list {
+  padding-top: 20px;
+
+  h3 {
+    padding-bottom: 10px;
+  }
+
+  .entry, .contestant, .pool {
+    @include card;
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    a.admin-link {
+      display: inline-block;
+      font-size: 14px;
+      color: $dark-green;
+    }
+  }
+
+  .entry, .contestant {
+    cursor: pointer;
+
+    > * {
+      vertical-align: middle;
+    }
+
+    span.points {
+      float: right;
+    }
+
+    .pick, .details {
+      font-size: 18px;
+      padding-left: 30px;
+    }
+
+    a.admin-link {
+      margin-left: 10px;
+    }
+  }
+
+  .pool {
+    a.pool-link {
+      font-size: 24px;
+      color: $base-font-color;
+    }
+
+    a.admin-link {
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.create-contestant, .create-entry, .create-pool {
+  padding: 20px 70px 0;
+  text-align: center;
+}

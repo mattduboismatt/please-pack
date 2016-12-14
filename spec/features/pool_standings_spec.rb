@@ -39,11 +39,9 @@ RSpec.describe "Pool Standings", js: true do
       create(:contestant_score, contestant: contestant2, score: create(:score, points: 9))
 
       visit "/pools/#{pool.id}"
-      within(".entries-list .entry") do
-        display_picks_link = find(".display-picks")
-        expect(display_picks_link.text).to eq "Show"
-        display_picks_link.click
-        expect(display_picks_link.text).to eq "Hide"
+      within(".entries-list") do
+        expect(all(".pick").count).to eq 0
+        find(".entry").click
         expect(all(".pick").count).to eq 2
 
         first_place = all(".pick")[0]

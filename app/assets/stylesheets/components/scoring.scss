@@ -1,0 +1,72 @@
+@mixin noselect {
+  $placeholders: "-webkit" "-moz" "-ms";
+  @each $placeholder in $placeholders {
+    #{$placeholder}-user-select: none;
+  }
+}
+
+.pool-scoring-form, .entry-picks-form {
+  margin-top: 20px;
+  padding: 0 70px;
+  text-align: center;
+
+  .points, .select-mechanism {
+    text-align: left;
+    @include span-columns(6);
+  }
+
+  .select-mechanism {
+    select {
+      height: 38px;
+
+      option {
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .points {
+    @include omega;
+    padding-right: 100px;
+
+    input[type='number'] {
+      text-align: center;
+      -moz-appearance:textfield;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+  }
+
+  .checkboxes {
+    @include clearfix;
+
+    label {
+      @include noselect;
+      @include span-columns(6);
+      margin-bottom: 10px;
+      padding: 5px 0;
+      cursor: pointer;
+      border: $base-border;
+      border-radius: $base-border-radius;
+
+      &:nth-child(2n) {
+        @include omega();
+      }
+
+      &:hover {
+        background-color: darken($light-purple, 5%);
+      }
+
+      &.selected {
+        background-color: $light-purple;
+      }
+    }
+
+    input[type='checkbox'] {
+      display: none;
+    }
+  }
+}

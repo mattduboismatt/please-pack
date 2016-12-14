@@ -17,6 +17,7 @@ export default class SavePicks extends Mutation {
       fragment on SavePicksPayload {
         entry {
           picks
+          points
         }
       }
     `

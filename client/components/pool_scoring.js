@@ -7,7 +7,7 @@ class PoolScoring extends React.Component {
   render() {
     return (
       <div className='scoring'>
-        <p>Scoring</p>
+        <h5>Scoring</h5>
         <PoolScoringForm viewer={this.props.viewer} score_mechanisms={this.props.viewer.score_mechanisms} contestants={this.props.viewer.pool.contestants} />
       </div>
     )

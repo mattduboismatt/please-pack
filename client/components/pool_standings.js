@@ -10,7 +10,7 @@ class PoolStandings extends React.Component {
 
     return (
       <div className='standings'>
-        <p>Standings</p>
+        <h5>Standings</h5>
         <EntriesList entries={pool.entries} />
         <ContestantsList contestants={pool.contestants} />
       </div>

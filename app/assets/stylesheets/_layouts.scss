@@ -1,0 +1,48 @@
+$large-screen: 800px;
+
+@mixin media($type) {
+  @media screen and (min-width: $type) {
+    @content
+  }
+}
+
+@mixin large-screen() {
+  @include media($large-screen) {
+    @content
+  }
+}
+
+body {
+  margin: 0;
+  background-color: $medium-purple;
+}
+
+.navigation {
+  background-color: $dark-green;
+  text-align: center;
+  padding: 15px 0;
+
+  h2 {
+    display: inline-block;
+    padding: 8px 15px;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 40px;
+    // font-weight: 700;
+    color: $white;
+    background-color: $dark-brown;
+  }
+}
+
+.container {
+  width: 500px;
+  margin: auto;
+  padding-bottom: 20px;
+
+  h2 {
+    padding-top: 10px;
+  }
+
+  h2, h5 {
+    text-align: center;
+  }
+}

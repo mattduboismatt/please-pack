@@ -92,13 +92,13 @@ class PoolScoringForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Points
-          <input type='number' name='points' value={this.state.points} onChange={this.handlePointsChange}/>
-        </label>
+      <form className='pool-scoring-form' onSubmit={this.handleSubmit}>
         {this.createMechanismSelect()}
-        {this.createCheckboxes()}
+        <div className='points'>
+          <label htmlFor='points'>Points</label>
+          <input type='number' name='points' value={this.state.points} onChange={this.handlePointsChange}/>
+        </div>
+        <div className='checkboxes'>{this.createCheckboxes()}</div>
         <input type='submit' value='Score' />
       </form>
     )

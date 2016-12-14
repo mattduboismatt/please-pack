@@ -12,7 +12,7 @@ class PoolSetup extends React.Component {
 
     return (
       <div className='setup'>
-        <p>Setup</p>
+        <h5>Setup</h5>
         <div className='contestants'>
           <ContestantsList contestants={pool.contestants} />
           <CreateContestantForm pool={pool} />

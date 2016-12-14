@@ -66,8 +66,8 @@ class EntryPicksForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        {this.createCheckboxes()}
+      <form className='entry-picks-form' onSubmit={this.handleSubmit}>
+        <div className='checkboxes'>{this.createCheckboxes()}</div>
         <input type='submit' value='Save' />
       </form>
     )

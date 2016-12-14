@@ -7,7 +7,7 @@ class EntryPicks extends React.Component {
   render() {
     return (
       <div className='picks'>
-        <p>Picks</p>
+        <h5>Picks</h5>
         <EntryPicksForm entry={this.props.viewer.entry} />
       </div>
     )

@@ -8,15 +8,17 @@ class PoolRow extends React.Component {
     let poolPath = `/pools/${pool.model_id}`
 
     if (admin) {
-      var setupPoolLink = <Link to={poolPath + '/setup'}>Setup</Link>
-      var scorePoolLink = <Link to={poolPath + '/score'}>Score</Link>
+      var setupPoolLink = <Link to={poolPath + '/setup'} className='admin-link'>Setup</Link>
+      var scorePoolLink = <Link to={poolPath + '/score'} className='admin-link'>Score</Link>
     }
 
     return (
       <div className='pool'>
-        <Link to={poolPath}>{pool.title}</Link>
-        {setupPoolLink}
-        {scorePoolLink}
+        <Link to={poolPath} className='pool-link'>{pool.title}</Link>
+        <div className='admin-links'>
+          {setupPoolLink}
+          {scorePoolLink}
+        </div>
       </div>
     )
   }

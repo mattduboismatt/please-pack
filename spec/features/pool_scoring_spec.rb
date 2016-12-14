@@ -16,7 +16,7 @@ RSpec.describe "Pool Scoring", js: true do
 
   it "displays a form for selecting contestants within that pool" do
     within(".pool .scoring") do
-      all_checkboxes = all("input[type='checkbox']")
+      all_checkboxes = all("input[type='checkbox']", visible: false)
       expect(all_checkboxes.count).to eq contestants.count
       all_checkboxes.each do |checkbox|
         expect(checkbox.checked?).to eq false
@@ -24,7 +24,7 @@ RSpec.describe "Pool Scoring", js: true do
 
       contestants.each do |contestant|
         expect(page).to have_text(/#{contestant.first_name}/i)
-        expect(page).to have_css("input[value='#{contestant.first_name}']")
+        expect(page).to have_css("input[value='#{contestant.first_name}']", visible: false)
       end
 
       expect(find("input[name='points']").value).to eq "1"
@@ -45,8 +45,8 @@ RSpec.describe "Pool Scoring", js: true do
     let(:mechanism) { Score::MECHANISMS.all.sample }
 
     it "creates a score and adds each contestant that was selected and redirects to the admin panel" do
-      find("input[value='#{contestant1.first_name}']").click
-      find("input[value='#{contestant3.first_name}']").click
+      find("label", text: contestant1.first_name).click
+      find("label", text: contestant3.first_name).click
       fill_in "points", with: points
       select(mechanism, from: "score_mechanism")
 

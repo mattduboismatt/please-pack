@@ -58,8 +58,7 @@ RSpec.describe "Setting up a pool", js: true do
       end
 
       all(".make-picks").first.click
-      expect(page).to have_text "Entry:"
-      expect(page).to have_text "Points:"
+      expect(page).to have_text(/#{entries.first.name} - #{entries.first.points} points/i)
     end
 
     describe "adding an entry" do

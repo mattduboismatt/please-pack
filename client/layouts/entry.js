@@ -6,9 +6,8 @@ class EntryLayout extends React.Component {
     let { entry } = this.props.viewer
 
     return (
-      <div className='entry'>
-        <h2>Entry: {entry.name}</h2>
-        <h2>Points: {entry.points}</h2>
+      <div className='entry-picks'>
+        <h2>{entry.name} - {entry.points} points</h2>
         {this.props.children}
       </div>
     )

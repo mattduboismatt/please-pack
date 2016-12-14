@@ -11,16 +11,18 @@ class EntryRow extends React.Component {
     let { picks } = this.props.entry
 
     if (this.state.showPicks) {
-      return picks.map(pick => <PickRow key={pick.id} pick={pick} />)
+      if (picks.length > 0) {
+        return picks.map(pick => <PickRow key={pick.id} pick={pick} />)
+      } else {
+        return <div className='pick'>No picks at this time</div>
+      }
     }
   }
 
-  handleDisplayPicksChange = () => {
-    this.setState({ showPicks: !this.state.showPicks })
-  }
-
-  displayPicksText = () => {
-    return this.state.showPicks ? "Hide" : "Show"
+  handleDisplayPicksChange = (e) => {
+    if (!e.target.hasAttribute('href')) {
+      this.setState({ showPicks: !this.state.showPicks })
+    }
   }
 
   render() {
@@ -28,15 +30,14 @@ class EntryRow extends React.Component {
 
     if (admin) {
       let entryPicksPath = `/entries/${entry.model_id}/picks`
-      var makePicksLink = <Link to={entryPicksPath} className='make-picks'>Make Picks</Link>
+      var makePicksLink = <Link to={entryPicksPath} className='make-picks admin-link'>Make Picks</Link>
     }
 
     return(
-      <div className='entry'>
+      <div className='entry' onClick={this.handleDisplayPicksChange}>
         <span className='name'>{entry.name}</span>
         <span className='points'>{entry.points}</span>
         {makePicksLink}
-        <a href='javascript:;' className='display-picks' onClick={this.handleDisplayPicksChange}>{this.displayPicksText()}</a>
         {this.displayPicks()}
       </div>
     )

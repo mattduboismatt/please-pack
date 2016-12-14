@@ -10,18 +10,17 @@ RSpec.describe "Entry Picks", js: true do
   before { visit "/entries/#{entry.id}/picks" }
 
   it "displays the entry name and points" do
-    within(".entry") do
-      expect(page).to have_text("Entry: #{entry.name}")
-      expect(page).to have_text("Points: #{entry.points}")
+    within(".entry-picks") do
+      expect(page).to have_text(/#{entry.name} - #{entry.points} points/i)
     end
   end
 
   it "displays a form for selecting contestants within that pool" do
-    within(".entry .picks") do
-      expect(all("input[type='checkbox']").count).to eq contestants.count
+    within(".entry-picks .picks") do
+      expect(all("input[type='checkbox']", visible: false).count).to eq contestants.count
       contestants.each do |contestant|
         expect(page).to have_text(contestant.first_name)
-        expect(page).to have_css("input[value='#{contestant.first_name}']")
+        expect(page).to have_css("input[value='#{contestant.first_name}']", visible: false)
       end
     end
   end
@@ -29,21 +28,25 @@ RSpec.describe "Entry Picks", js: true do
   describe "saving picks" do
     it "adds a pick if a contestant is selected" do
       new_contestant = contestants.first
-      checkbox = find("input[value='#{new_contestant.first_name}']")
-      expect(checkbox.checked?).to eq false
-      checkbox.click
+      label = find("label", text: new_contestant.first_name)
+      expect(label[:class]).to eq ""
+      label.click
       click_button "Save"
       visit "/entries/#{entry.id}/picks"
-      expect(checkbox.checked?).to eq true
+
+      label = find("label", text: new_contestant.first_name)
+      expect(label[:class]).to eq "selected"
     end
 
     it "removes a pick if contestant is deselected" do
-      checkbox = find("input[value='#{contestant.first_name}']")
-      expect(checkbox.checked?).to eq true
-      checkbox.click
+      label = find("label", text: contestant.first_name)
+      expect(label[:class]).to eq "selected"
+      label.click
       click_button "Save"
       visit "/entries/#{entry.id}/picks"
-      expect(checkbox.checked?).to eq false
+
+      label = find("label", text: contestant.first_name)
+      expect(label[:class]).to eq ""
     end
 
     it "redirects to the pool setup page" do
