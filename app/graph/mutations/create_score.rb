@@ -10,8 +10,8 @@ module Mutations
     return_field :viewer, Queries::Viewer
 
     resolve ->(inputs, _context) do
-      score = Score.new(points: inputs[:points], mechanism: inputs[:mechanism])
-      score.contestants << Contestant.find(inputs[:contestant_ids])
+      score = ::Score.new(points: inputs[:points], mechanism: inputs[:mechanism])
+      score.contestants << ::Contestant.find(inputs[:contestant_ids])
       score.save!
       connection = GraphQL::Relay::RelationConnection.new(Score.all, {})
 
