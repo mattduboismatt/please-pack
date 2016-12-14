@@ -57,8 +57,10 @@ RSpec.describe "Setting up a pool", js: true do
         end
       end
 
-      all(".make-picks").first.click
-      expect(page).to have_text(/#{entries.first.name} - #{entries.first.points} points/i)
+      entry = entries.first
+      link = find(:css, "a.make-picks[href='/entries/#{entry.id}/picks']")
+      link.click
+      expect(page).to have_text(/#{entry.name} - #{entry.points} points/i)
     end
 
     describe "adding an entry" do
