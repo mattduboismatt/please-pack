@@ -14,7 +14,7 @@ Capybara.register_driver :selenium_chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 Capybara.javascript_driver = :selenium_chrome
-Capybara.default_max_wait_time = 5
+Capybara.default_max_wait_time = 10
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
