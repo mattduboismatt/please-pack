@@ -8,5 +8,6 @@ module Mutations
     field :create_entry, field: CreateEntry.field
     field :save_picks, field: SavePicks.field
     field :create_score, field: CreateScore.field
+    field :delete_entry, field: DeleteEntry.field
   end
 end

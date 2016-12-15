@@ -3,6 +3,7 @@ import Relay from 'react-relay'
 import { Link } from 'react-router'
 
 import PickRow from 'components/pick_row'
+import DeleteEntryMutation from 'mutations/delete_entry'
 
 class EntryRow extends React.Component {
   state = { showPicks: false }
@@ -25,12 +26,22 @@ class EntryRow extends React.Component {
     }
   }
 
+  handleRemoveEntry = () => {
+    let mutation = new DeleteEntryMutation({
+      entry: this.props.entry,
+      pool: this.props.entry.pool
+    })
+
+    Relay.Store.commitUpdate(mutation)
+  }
+
   render() {
     let { entry, admin } = this.props
 
     if (admin) {
       let entryPicksPath = `/entries/${entry.model_id}/picks`
       var makePicksLink = <Link to={entryPicksPath} className='make-picks admin-link'>Make Picks</Link>
+      var removeEntryLink = <a href='javascript:;' className='remove-entry admin-link remove' onClick={this.handleRemoveEntry}>Remove</a>
     }
 
     return(
@@ -38,6 +49,7 @@ class EntryRow extends React.Component {
         <span className='name'>{entry.name}</span>
         <span className='points'>{entry.points}</span>
         {makePicksLink}
+        {removeEntryLink}
         {this.displayPicks()}
       </div>
     )
@@ -55,6 +67,7 @@ export default Relay.createContainer(EntryRow, {
           id
           ${PickRow.getFragment('pick')}
         }
+        ${DeleteEntryMutation.getFragment('entry')}
       }
     `
   }

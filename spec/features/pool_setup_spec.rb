@@ -85,5 +85,22 @@ RSpec.describe "Setting up a pool", js: true do
         xit "displays an error message"
       end
     end
+
+    describe "removing an entry" do
+      let(:entry) { entries.first }
+
+      it "removes the entry from the pool" do
+        expect(page).to have_text entry.name
+        entry_row = find("a[href='/entries/#{entry.id}/picks']").first(:xpath, ".//..")
+        expect do
+          entry_row.find("a.remove-entry").click
+          sleep 1
+        end.to change(pool.reload.entries, :count).by(-1)
+
+        expect(page).to_not have_text entry.name
+      end
+
+      xit "uses a confirm box to ensure the action"
+    end
   end
 end
