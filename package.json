@@ -29,6 +29,7 @@
     "babel-relay-plugin": "^0.9.3",
     "babelify": "^7.3.0",
     "graphql": "^0.8.2",
+    "pify": "^2.3.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-relay": "^0.9.3",
