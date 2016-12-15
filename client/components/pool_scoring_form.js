@@ -84,6 +84,7 @@ class PoolScoringForm extends React.Component {
       <div className='select-mechanism'>
         <label htmlFor='score_mechanism'>Mechanism</label>
         <select name='score_mechanism' value={this.state.mechanism} onChange={this.handleMechanismChange}>
+          <option value='' disabled>select</option>
           {this.props.score_mechanisms.map(mechanism => this.createOption(mechanism))}
         </select>
       </div>

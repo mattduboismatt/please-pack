@@ -29,7 +29,7 @@ RSpec.describe "Pool Scoring", js: true do
 
       expect(find("input[name='points']").value).to eq "1"
       within("select[name='score_mechanism']") do
-        expect(all("option").count).to eq Score::MECHANISMS.all.count
+        expect(all("option").count).to eq(Score::MECHANISMS.all.count + 1)
         Score::MECHANISMS.all.each do |mechanism|
           find("option[value='#{mechanism}']")
         end
@@ -51,7 +51,7 @@ RSpec.describe "Pool Scoring", js: true do
       select(mechanism, from: "score_mechanism")
 
       click_button "Score"
-      expect(page).to have_text "Super Secret Admin Panel"
+      find("h2", text: /super secret admin panel/i).click
       expect(contestant1.reload.points).to eq points
       expect(contestant3.reload.points).to eq points
       expect(contestant2.reload.points).to eq 0
