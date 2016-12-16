@@ -1,6 +1,8 @@
 import React from 'react'
 import Relay from 'react-relay'
 
+import DeleteContestantMutation from 'mutations/delete_contestant'
+
 class ContestantRow extends React.Component {
   state = { showDetails: false }
 
@@ -17,17 +19,35 @@ class ContestantRow extends React.Component {
     }
   }
 
-  handleDisplayDetailsChange = () => {
-    this.setState({ showDetails: !this.state.showDetails })
+  handleDisplayDetailsChange = (e) => {
+    if (!e.target.hasAttribute('href')) {
+      this.setState({ showDetails: !this.state.showDetails })
+    }
+  }
+
+  handleRemoveContestant = (e) => {
+    e.preventDefault()
+
+    let mutation = new DeleteContestantMutation({
+      contestant: this.props.contestant,
+      pool: this.props.contestant.pool
+    })
+
+    Relay.Store.commitUpdate(mutation)
   }
 
   render() {
-    let { contestant } = this.props
+    let { contestant, admin } = this.props
+
+    if (admin) {
+      var removeContestantLink = <a href='#' className='admin-link remove' onClick={this.handleRemoveContestant}>Remove</a>
+    }
 
     return(
       <div className='contestant' onClick={this.handleDisplayDetailsChange}>
         <span className='first-name'>{contestant.first_name}</span>
         <span className='points'>{contestant.points}</span>
+        {removeContestantLink}
         {this.displayDetails()}
       </div>
     )
@@ -42,8 +62,8 @@ export default Relay.createContainer(ContestantRow, {
         residence
         description
         points
+        ${DeleteContestantMutation.getFragment('contestant')}
       }
     `
   }
 })
-

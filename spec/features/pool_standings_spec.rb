@@ -5,11 +5,26 @@ RSpec.describe "Pool Standings", js: true do
   let!(:entry) { create(:entry, pool: pool) }
 
   describe "summary" do
-    it "displays the pool title" do
-      visit "/pools/#{pool.id}"
+    let!(:conte) { create(:contestant, pool: pool) }
 
+    before { visit "/pools/#{pool.id}" }
+
+    it "displays the pool title" do
       expect(page).to have_text(/#{pool.title}/i)
       expect(page).to have_text(/standings/i)
+    end
+
+    it "does not display admin capabalities" do
+      expect(page).to_not have_css(".create-contestant")
+      expect(page).to_not have_css(".create-entry")
+
+      within(".entries-list") do
+        expect(page).to_not have_css("a.admin-link")
+      end
+
+      within(".contestants-list") do
+        expect(page).to_not have_css("a.admin-link")
+      end
     end
   end
 

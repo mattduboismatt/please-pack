@@ -15,7 +15,7 @@ RSpec.describe Entry do
 
   describe "associations" do
     it { is_expected.to belong_to :pool }
-    it { is_expected.to have_many :picks }
+    it { is_expected.to have_many(:picks).dependent(:destroy) }
     it { is_expected.to have_many(:contestants).through(:picks) }
   end
 

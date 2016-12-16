@@ -11,5 +11,6 @@ module Queries
     field :residence, types.String
     field :description, types.String
     field :points, !types.Int
+    field :pool, !PoolType
   end
 end

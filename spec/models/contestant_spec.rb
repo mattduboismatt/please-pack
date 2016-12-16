@@ -15,8 +15,9 @@ RSpec.describe Contestant do
 
   describe "associations" do
     it { is_expected.to belong_to :pool }
-    it { is_expected.to have_many :contestant_scores }
+    it { is_expected.to have_many(:contestant_scores).dependent(:destroy) }
     it { is_expected.to have_many(:scores).through(:contestant_scores) }
+    it { is_expected.to have_many(:picks).dependent(:destroy) }
   end
 
   describe "#points" do

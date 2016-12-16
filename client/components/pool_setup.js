@@ -14,7 +14,7 @@ class PoolSetup extends React.Component {
       <div className='setup'>
         <h5>Setup</h5>
         <div className='contestants'>
-          <ContestantsList contestants={pool.contestants} />
+          <ContestantsList contestants={pool.contestants} admin={true} />
           <CreateContestantForm pool={pool} />
         </div>
         <div className='entries'>

@@ -7,7 +7,7 @@ export default class DeleteEntryMutation extends Mutation {
 
   getVariables() {
     return {
-      entry_id: this.props.entry.id,
+      entry_id: this.props.entry.id
     }
   }
 

@@ -40,8 +40,8 @@ class EntryRow extends React.Component {
 
     if (admin) {
       let entryPicksPath = `/entries/${entry.model_id}/picks`
-      var makePicksLink = <Link to={entryPicksPath} className='make-picks admin-link'>Make Picks</Link>
-      var removeEntryLink = <a href='javascript:;' className='remove-entry admin-link remove' onClick={this.handleRemoveEntry}>Remove</a>
+      var makePicksLink = <Link to={entryPicksPath} className='admin-link'>Make Picks</Link>
+      var removeEntryLink = <a href='javascript:;' className='admin-link remove' onClick={this.handleRemoveEntry}>Remove</a>
     }
 
     return(

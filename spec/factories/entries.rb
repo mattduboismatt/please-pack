@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :entry do
     pool
-    name { Faker::StarWars.character }
+    sequence(:name) { |n| Faker::StarWars.character + n.to_s }
 
     trait :with_points do
       after(:create) do |entry|

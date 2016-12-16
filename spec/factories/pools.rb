@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :pool do
-    title { Faker::Commerce.department }
+    sequence(:title) { |n| Faker::StarWars.planet + n.to_s }
 
     trait :with_picks do
       after(:create) do |pool|

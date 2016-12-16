@@ -13,6 +13,7 @@ RSpec.describe "Setting up a pool", js: true do
     it "displays a list of the contestants" do
       within(".contestants-list") do
         expect(all(".contestant").count).to eq contestants.count
+        expect(all("a.remove").count).to eq contestants.count
         contestants.each do |contestant|
           expect(page).to have_text contestant.first_name
         end
@@ -44,12 +45,38 @@ RSpec.describe "Setting up a pool", js: true do
         xit "displays an error message"
       end
     end
+
+    describe "removing a contestant" do
+      let(:entry) { entries.last }
+      let(:contestant) { contestants.last }
+      let!(:pick) { create(:pick, entry: entry, contestant: contestant) }
+      let!(:contestant_score) { create(:contestant_score, contestant: contestant, score: create(:score, points: 5)) }
+
+      it "removes the contestant from the pool and updates entry scores appropriately" do
+        visit "/pools/#{pool.id}/setup"
+        entry_points = find(".entry", text: /#{entry.name}/i).find(".points")
+        expect(entry_points.text).to eq "5"
+        expect(page).to have_text contestant.first_name
+        remove_contestant_link = find(".contestant", text: /#{contestant.first_name}/i).find("a.remove")
+        expect do
+          remove_contestant_link.click
+          sleep 1
+        end.to change(pool.reload.contestants, :count).by(-1)
+
+        expect(page).to_not have_text contestant.first_name
+        expect(page).to have_text contestants.first.first_name
+        expect(entry_points.text).to eq "0"
+      end
+
+      xit "uses a confirm box to ensure the action"
+    end
   end
 
   describe "entries" do
     it "displays a list of the entries" do
       within(".entries-list") do
         expect(all(".entry").count).to eq entries.count
+        expect(all("a.admin-link", text: /remove/i).count).to eq entries.count
         entries.each do |entry|
           expect(page).to have_text entry.name
           expect(page).to have_text entry.points
@@ -58,7 +85,7 @@ RSpec.describe "Setting up a pool", js: true do
       end
 
       entry = entries.first
-      link = find(:css, "a.make-picks[href='/entries/#{entry.id}/picks']")
+      link = find(:css, "a.admin-link[href='/entries/#{entry.id}/picks']")
       link.click
       expect(page).to have_text(/#{entry.name} - #{entry.points} points/i)
     end
@@ -93,11 +120,12 @@ RSpec.describe "Setting up a pool", js: true do
         expect(page).to have_text entry.name
         entry_row = find("a[href='/entries/#{entry.id}/picks']").first(:xpath, ".//..")
         expect do
-          entry_row.find("a.remove-entry").click
+          entry_row.find("a.remove").click
           sleep 1
         end.to change(pool.reload.entries, :count).by(-1)
 
         expect(page).to_not have_text entry.name
+        expect(page).to have_text entries.last.name
       end
 
       xit "uses a confirm box to ensure the action"
