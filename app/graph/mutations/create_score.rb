@@ -11,13 +11,17 @@ module Mutations
 
     resolve ->(inputs, _context) do
       score = ::Score.new(points: inputs[:points], mechanism: inputs[:mechanism])
-      score.contestants << ::Contestant.find(inputs[:contestant_ids])
+      contestants = ::Contestant.find(inputs[:contestant_ids])
+
+      raise GraphQL::ExecutionError, "Contestants must not be empty" if contestants.empty?
+
+      score.contestants << contestants
       score.save!
       connection = GraphQL::Relay::RelationConnection.new(Score.all, {})
 
       {
         score_edge: GraphQL::Relay::Edge.new(score, connection),
-        viewer: Viewer
+        viewer: ::Viewer
       }
     end
   end

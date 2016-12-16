@@ -39,9 +39,9 @@ RSpec.describe Mutations::CreateScore do
       expect { graphql_result }.to raise_error(ActiveRecord::RecordInvalid, /mechanism is not included in the list/i)
     end
 
-    xit "does not create a score without contestants" do
+    it "does not create a score without contestants" do
       args[:contestant_ids] = []
-      expect { graphql_result }.to raise_error(ActiveRecord::RecordInvalid, /contestants must not be empty/i)
+      expect { graphql_result }.to raise_error(GraphQL::ExecutionError, /contestants must not be empty/i)
     end
 
     it "does not create a score if unknown contestants are supplied" do

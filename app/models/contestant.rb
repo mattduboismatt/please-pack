@@ -6,6 +6,9 @@ class Contestant < ApplicationRecord
 
   validates :pool, :first_name, presence: true
 
+  scope :active, -> { where(eliminated: false) }
+  scope :eliminated, -> { where(eliminated: true) }
+
   def points
     scores.map(&:points).sum
   end

@@ -11,5 +11,6 @@ module Mutations
     field :delete_entry, field: DeleteEntry.field
     field :delete_contestant, field: DeleteContestant.field
     field :delete_pool, field: DeletePool.field
+    field :create_elimination, field: CreateElimination.field
   end
 end
