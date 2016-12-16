@@ -13,7 +13,7 @@ RSpec.describe Pool do
   end
 
   describe "associations" do
-    it { is_expected.to have_many :contestants }
-    it { is_expected.to have_many :entries }
+    it { is_expected.to have_many(:contestants).dependent(:destroy) }
+    it { is_expected.to have_many(:entries).dependent(:destroy) }
   end
 end

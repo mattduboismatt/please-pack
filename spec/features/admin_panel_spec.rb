@@ -10,7 +10,7 @@ RSpec.describe "Admin Panel", js: true do
     pool = create(:pool)
     other_pool = create(:pool)
 
-    visit "/"
+    visit "/admin"
     within(".pools-list") do
       expect(all(".pool").count).to eq 2
       expect(page).to have_link(text: /#{pool.title}/i, href: "/pools/#{pool.id}")
@@ -21,12 +21,13 @@ RSpec.describe "Admin Panel", js: true do
     expect(page).to have_text(/standings/i)
   end
 
-  it "displays a link to setup and to score the pool" do
+  it "displays a link to setup, score, and remove the pool" do
     pool = create(:pool)
 
     visit "/admin"
     expect(page).to have_link("Setup", href: "/pools/#{pool.id}/setup")
     expect(page).to have_link("Score", href: "/pools/#{pool.id}/score")
+    expect(page).to have_link("Remove")
   end
 
   describe "adding a pool" do
@@ -43,6 +44,23 @@ RSpec.describe "Admin Panel", js: true do
 
     context "unsuccessfully" do
       xit "displays an error message"
+    end
+  end
+
+  describe "removing a pool" do
+    let!(:pool) { create(:pool) }
+    let!(:other_pool) { create(:pool) }
+
+    it "removes the pool from the list" do
+      visit "/admin"
+
+      expect do
+        find(".pool", text: /#{pool.title}/i).find("a.remove").click
+        sleep 1
+      end.to change(Pool, :count).from(2).to(1)
+
+      expect(page).to_not have_text(/#{pool.title}/i)
+      expect(page).to have_text(/#{other_pool.title}/i)
     end
   end
 end

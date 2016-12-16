@@ -22,13 +22,14 @@ RSpec.describe "Homepage", js: true do
     expect(page).to have_text(/standings/i)
   end
 
-  it "does not display a link to setup the pool" do
+  it "does not display admin only links to score, setup, or remove the pool" do
     pool = create(:pool)
 
     visit "/"
     expect(page).to have_text(/#{pool.title}/i)
     expect(page).to_not have_link("Setup")
     expect(page).to_not have_link("Score")
+    expect(page).to_not have_link("Remove")
   end
 
   it "falls back to an empty page" do

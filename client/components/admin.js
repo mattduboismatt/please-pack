@@ -12,7 +12,7 @@ class Admin extends React.Component {
     return (
       <div>
         <h2>Super Secret Admin Panel</h2>
-        <PoolsList pools={pools} admin={true}/>
+        <PoolsList pools={pools} admin={true} viewer={viewer} />
         <CreatePoolForm viewer={viewer}/>
       </div>
     )

@@ -5,12 +5,12 @@ import PoolRow from 'components/pool_row'
 
 class PoolsList extends React.Component {
   render() {
-    let { admin } = this.props
+    let { admin, viewer } = this.props
     let pools = this.props.pools.edges.map(pool => pool.node)
 
     return (
       <div className='pools-list'>
-        {pools.map(pool => <PoolRow key={pool.id} pool={pool} admin={admin} />)}
+        {pools.map(pool => <PoolRow key={pool.id} pool={pool} admin={admin} viewer={viewer} />)}
       </div>
     )
   }

@@ -10,5 +10,6 @@ module Mutations
     field :create_score, field: CreateScore.field
     field :delete_entry, field: DeleteEntry.field
     field :delete_contestant, field: DeleteContestant.field
+    field :delete_pool, field: DeletePool.field
   end
 end
