@@ -93,5 +93,12 @@ RSpec.describe "Pool Standings", js: true do
         expect(second_place.find(".points").text).to eq other_contestant.points.to_s
       end
     end
+
+    it "marks eliminated contestants" do
+      contestant.update!(eliminated: true)
+      visit "/pools/#{pool.id}"
+      eliminated_contestant = find(".contestant.eliminated")
+      expect(eliminated_contestant.text).to match(/#{contestant.first_name}/i)
+    end
   end
 end

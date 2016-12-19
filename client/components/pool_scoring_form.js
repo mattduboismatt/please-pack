@@ -88,6 +88,7 @@ class PoolScoringForm extends React.Component {
         modelId={contestant.model_id}
         handleCheckboxChange={this.toggleCheckbox}
         isChecked={false}
+        isEliminated={contestant.eliminated}
       />
     )
   }
@@ -141,6 +142,7 @@ export default Relay.createContainer(PoolScoringForm, {
             id
             model_id
             first_name
+            eliminated
           }
         }
       }

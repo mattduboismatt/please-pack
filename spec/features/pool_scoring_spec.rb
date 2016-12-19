@@ -3,12 +3,14 @@ require "rails_helper"
 RSpec.describe "Pool Scoring", js: true do
   let(:pool) { create(:pool) }
   let!(:contestants) { create_list(:contestant, 3, pool: pool) }
+  let(:contestant1) { contestants.first }
+  let(:contestant2) { contestants.second }
+  let(:contestant3) { contestants.third }
   let!(:other_contestant) { create(:contestant) }
 
   before { visit "/pools/#{pool.id}/score" }
 
   it "displays the pool title" do
-    visit "/pools/#{pool.id}/score"
     within(".pool") do
       expect(page).to have_text(/#{pool.title}/i)
     end
@@ -37,10 +39,16 @@ RSpec.describe "Pool Scoring", js: true do
     end
   end
 
+  it "marks eliminated contestants" do
+    contestant1 = contestants.first
+    contestant1.update!(eliminated: true)
+    visit "/pools/#{pool.id}/score"
+
+    eliminated_contestant = find("label.eliminated")
+    expect(eliminated_contestant.text).to match(/#{contestant1.first_name}/i)
+  end
+
   describe "creating a score" do
-    let(:contestant1) { contestants.first }
-    let(:contestant2) { contestants.second }
-    let(:contestant3) { contestants.third }
     let(:points) { (1..10).to_a.sample }
 
     context "non elmination" do

@@ -14,7 +14,7 @@
   "engines": {
     "node": "7.2.0",
     "npm": "3.10.9",
-    "yarn": "0.18.0"
+    "yarn": "0.18.1"
   },
   "devDependencies": {
     "standard": "^8.6.0"
@@ -29,6 +29,7 @@
     "babel-preset-react": "^6.16.0",
     "babel-relay-plugin": "^0.9.3",
     "babelify": "^7.3.0",
+    "classnames": "^2.2.5",
     "graphql": "^0.8.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",

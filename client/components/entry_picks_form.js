@@ -55,6 +55,7 @@ class EntryPicksForm extends React.Component {
         modelId={modelId}
         handleCheckboxChange={this.toggleCheckbox}
         isChecked={isChecked}
+        isEliminated={contestant.eliminated}
       />
     )
   }
@@ -92,6 +93,7 @@ export default Relay.createContainer(EntryPicksForm, {
                 id
                 model_id
                 first_name
+                eliminated
               }
             }
           }

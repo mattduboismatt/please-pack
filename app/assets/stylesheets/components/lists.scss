@@ -63,6 +63,18 @@
       }
     }
   }
+
+  .contestant {
+    &.eliminated {
+      background-color: $red;
+      span {
+        text-decoration: line-through;
+      }
+      a.remove {
+        color: $base-font-color;
+      }
+    }
+  }
 }
 
 .create-contestant, .create-entry, .create-pool {

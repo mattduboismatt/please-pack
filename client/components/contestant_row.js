@@ -1,5 +1,6 @@
 import React from 'react'
 import Relay from 'react-relay'
+import classNames from 'classnames'
 
 import DeleteContestantMutation from 'mutations/delete_contestant'
 
@@ -39,12 +40,16 @@ class ContestantRow extends React.Component {
   render() {
     let { contestant, admin } = this.props
 
+    let contestantClassNames = classNames('contestant', {
+      'eliminated': contestant.eliminated
+    })
+
     if (admin) {
       var removeContestantLink = <a href='#' className='admin-link remove' onClick={this.handleRemoveContestant}>Remove</a>
     }
 
     return(
-      <div className='contestant' onClick={this.handleDisplayDetailsChange}>
+      <div className={contestantClassNames} onClick={this.handleDisplayDetailsChange}>
         <span className='first-name'>{contestant.first_name}</span>
         <span className='points'>{contestant.points}</span>
         {removeContestantLink}
@@ -62,6 +67,7 @@ export default Relay.createContainer(ContestantRow, {
         residence
         description
         points
+        eliminated
         ${DeleteContestantMutation.getFragment('contestant')}
       }
     `

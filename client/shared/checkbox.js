@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 
 export default class Checkbox extends React.Component {
   state = { isChecked: this.props.isChecked }
@@ -10,7 +11,10 @@ export default class Checkbox extends React.Component {
 
   render() {
     let { label } = this.props
-    let labelClassNames = this.state.isChecked ? 'selected' : ''
+    let labelClassNames = classNames({
+      'selected': this.state.isChecked,
+      'eliminated': this.props.isEliminated
+    })
 
     return (
       <label className={labelClassNames}>

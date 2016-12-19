@@ -63,6 +63,11 @@
       &.selected {
         background-color: $light-purple;
       }
+
+      &.eliminated {
+        color: $red;
+        text-decoration: line-through;
+      }
     }
 
     input[type='checkbox'] {
