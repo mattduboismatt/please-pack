@@ -27,7 +27,7 @@ RSpec.describe "Entry Picks", js: true do
 
   it "marks contestants as elimianted" do
     eliminated_contestant = contestants.last
-    eliminated_contestant.update!(eliminated: true)
+    eliminated_contestant.eliminate!
     visit "/entries/#{entry.id}/picks"
     eliminated_label = find("label.eliminated")
     expect(eliminated_label.text).to match(/#{eliminated_contestant.first_name}/i)

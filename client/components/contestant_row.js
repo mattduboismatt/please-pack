@@ -9,10 +9,17 @@ class ContestantRow extends React.Component {
 
   displayDetails = () => {
     let { contestant } = this.props
+    let scores = _.groupBy(contestant.scores.map(score => score.mechanism))
+    scores.advancement = scores.advancement || []
+    scores.quickfire = scores.quickfire || []
+    scores.weekly_winner = scores.weekly_winner || []
 
     if (this.state.showDetails) {
       return (
         <div className='details'>
+          <p>Advanced {scores.advancement.length} weeks</p>
+          <p>{scores.quickfire.length} Quickfires</p>
+          <p>{scores.weekly_winner.length} Weekly Winners</p>
           <p>{contestant.residence}</p>
           <p>{contestant.description}</p>
         </div>
@@ -68,6 +75,9 @@ export default Relay.createContainer(ContestantRow, {
         description
         points
         eliminated
+        scores {
+          mechanism
+        }
         ${DeleteContestantMutation.getFragment('contestant')}
       }
     `

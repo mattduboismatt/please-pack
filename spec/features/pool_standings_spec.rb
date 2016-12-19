@@ -95,7 +95,7 @@ RSpec.describe "Pool Standings", js: true do
     end
 
     it "marks eliminated contestants" do
-      contestant.update!(eliminated: true)
+      contestant.eliminate!
       visit "/pools/#{pool.id}"
       eliminated_contestant = find(".contestant.eliminated")
       expect(eliminated_contestant.text).to match(/#{contestant.first_name}/i)

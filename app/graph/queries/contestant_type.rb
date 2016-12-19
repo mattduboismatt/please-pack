@@ -13,5 +13,6 @@ module Queries
     field :points, !types.Int
     field :eliminated, !types.Boolean
     field :pool, !PoolType
+    field :scores, !types[ScoreType]
   end
 end

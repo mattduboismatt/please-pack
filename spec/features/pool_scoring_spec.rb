@@ -41,7 +41,7 @@ RSpec.describe "Pool Scoring", js: true do
 
   it "marks eliminated contestants" do
     contestant1 = contestants.first
-    contestant1.update!(eliminated: true)
+    contestant1.eliminate!
     visit "/pools/#{pool.id}/score"
 
     eliminated_contestant = find("label.eliminated")

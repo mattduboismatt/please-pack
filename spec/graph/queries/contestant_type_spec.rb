@@ -4,7 +4,7 @@ RSpec.describe Queries::ContestantType do
   subject { Queries::ContestantType }
 
   context "fields" do
-    let(:fields) { %w(id model_id first_name last_name residence description points pool eliminated) }
+    let(:fields) { %w(id model_id first_name last_name residence description points pool eliminated scores) }
 
     it "has the proper fields" do
       expect(subject.fields.keys).to match_array fields

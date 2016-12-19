@@ -12,4 +12,8 @@ class Contestant < ApplicationRecord
   def points
     scores.map(&:points).sum
   end
+
+  def eliminate!
+    update!(eliminated: true)
+  end
 end

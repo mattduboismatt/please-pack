@@ -48,4 +48,12 @@ RSpec.describe Contestant do
       expect(subject.points).to eq expected_points
     end
   end
+
+  describe "#eliminate!" do
+    it "marks the subject as eliminated" do
+      expect(subject.eliminated?).to eq false
+      subject.eliminate!
+      expect(subject.eliminated?).to eq true
+    end
+  end
 end

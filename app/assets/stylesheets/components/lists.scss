@@ -51,6 +51,40 @@
     }
   }
 
+  .entry {
+    .pick {
+      @include clearfix;
+
+      > * {
+        height: 27px;
+        vertical-align: middle;
+      }
+
+      .first-name {
+        @include span-columns(3);
+      }
+
+      .breakdown {
+        @include span-columns(8);
+        font-size: 14px;
+
+        > * {
+          vertical-align: middle;
+        }
+
+        span {
+          padding-right: 5px;
+          font-weight: 400;
+        }
+      }
+
+      .points {
+        @include span-columns(1);
+        text-align: right;
+      }
+    }
+  }
+
   .pool {
     a.pool-link {
       font-size: 24px;

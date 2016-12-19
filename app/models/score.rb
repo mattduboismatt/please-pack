@@ -1,7 +1,7 @@
 class Score < ApplicationRecord
   module MECHANISMS
     QUICKFIRE = "quickfire".freeze
-    WEEKLY_WINNER = "weekly winner".freeze
+    WEEKLY_WINNER = "weekly_winner".freeze
     ADVANCEMENT = "advancement".freeze
     ELIMINATION = "elimination".freeze
 
