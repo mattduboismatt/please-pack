@@ -3,6 +3,7 @@ import Relay from 'react-relay'
 import shortid from 'shortid'
 
 import CreateScoreMutation from 'mutations/create_score'
+import CreateEliminationMutation from 'mutations/create_elimination'
 import Checkbox from 'shared/checkbox'
 
 class PoolScoringForm extends React.Component {
@@ -35,6 +36,25 @@ class PoolScoringForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    if (this.state.mechanism === 'elimination') {
+      this.handleEliminationMutation()
+    } else {
+      this.handleScoreMutation()
+    }
+  }
+
+  handleEliminationMutation = () => {
+    let mutation = new CreateEliminationMutation({
+      viewer: this.props.viewer,
+      points: this.state.points,
+      pool: this.props.pool,
+      contestant_ids: [...this.selectedCheckboxes]
+    })
+
+    this.commitMutation(mutation)
+  }
+
+  handleScoreMutation = () => {
     let mutation = new CreateScoreMutation({
       viewer: this.props.viewer,
       points: this.state.points,
@@ -42,6 +62,10 @@ class PoolScoringForm extends React.Component {
       contestant_ids: [...this.selectedCheckboxes]
     })
 
+    this.commitMutation(mutation)
+  }
+
+  commitMutation = (mutation) => {
     Relay.Store.commitUpdate(mutation, {
       onSuccess: this.handleSuccess,
       onFailure: this.handleFailure
@@ -80,12 +104,14 @@ class PoolScoringForm extends React.Component {
   }
 
   createMechanismSelect = () => {
+    let scoreMechanisms = this.props.viewer.score_mechanisms
+
     return (
       <div className='select-mechanism'>
         <label htmlFor='score_mechanism'>Mechanism</label>
         <select name='score_mechanism' value={this.state.mechanism} onChange={this.handleMechanismChange}>
           <option value='' disabled>select</option>
-          {this.props.score_mechanisms.map(mechanism => this.createOption(mechanism))}
+          {scoreMechanisms.map(mechanism => this.createOption(mechanism))}
         </select>
       </div>
     )
@@ -117,6 +143,11 @@ export default Relay.createContainer(PoolScoringForm, {
             first_name
           }
         }
+      }
+    `,
+    pool: () => Relay.QL`
+      fragment on Pool {
+        model_id
       }
     `
   }

@@ -273,7 +273,7 @@
             },
             {
               "name": "score_mechanisms",
-              "description": "Options for the score mechanism",
+              "description": "Options for the score mechanism w/ elimination option",
               "args": [
 
               ],

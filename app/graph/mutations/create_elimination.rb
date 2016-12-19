@@ -10,18 +10,22 @@ module Mutations
     return_field :viewer, Queries::Viewer
 
     resolve ->(inputs, _context) do
-      score = ::Score.new(points: inputs[:points], mechanism: ::Score::MECHANISMS::ADVANCEMENT)
       contestants_to_eliminate = ::Contestant.where(id: inputs[:contestant_ids])
-
       raise GraphQL::ExecutionError, "Contestants must not be empty" if contestants_to_eliminate.empty?
       raise GraphQL::ExecutionError, "Contestant has already been eliminated" if contestants_to_eliminate.any?(&:eliminated?)
 
       contestants_to_eliminate.update_all(eliminated: true)
 
-      pool = ::Pool.find(inputs[:pool_id])
-      remaining_contestants = pool.contestants.active
+      remaining_contestants = ::Pool.find(inputs[:pool_id]).contestants.active
+      score = ::Score.new(points: inputs[:points], mechanism: ::Score::MECHANISMS::ADVANCEMENT)
       score.contestants << remaining_contestants
       score.save!
+      connection = GraphQL::Relay::RelationConnection.new(Score.all, {})
+
+      {
+        score_edge: GraphQL::Relay::Edge.new(score, connection),
+        viewer: ::Viewer
+      }
     end
   end
 end

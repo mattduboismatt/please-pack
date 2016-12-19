@@ -69,8 +69,8 @@ RSpec.describe Queries::Viewer do
   context "score_mechanisms" do
     subject { Queries::Viewer.fields["score_mechanisms"] }
 
-    it "is all score mechanisms as an array of strings" do
-      expect(subject.resolve(nil, nil, nil)).to match_array Score::MECHANISMS.all
+    it "is top chef score mechanisms as an array of strings" do
+      expect(subject.resolve(nil, nil, nil)).to match_array Score::MECHANISMS.top_chef
     end
   end
 end

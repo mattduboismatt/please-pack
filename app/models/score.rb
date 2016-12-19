@@ -3,9 +3,14 @@ class Score < ApplicationRecord
     QUICKFIRE = "quickfire".freeze
     WEEKLY_WINNER = "weekly winner".freeze
     ADVANCEMENT = "advancement".freeze
+    ELIMINATION = "elimination".freeze
 
     def self.all
       [QUICKFIRE, WEEKLY_WINNER, ADVANCEMENT]
+    end
+
+    def self.top_chef
+      [QUICKFIRE, WEEKLY_WINNER, ELIMINATION]
     end
   end
 

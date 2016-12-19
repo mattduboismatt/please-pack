@@ -27,8 +27,8 @@ module Queries
 
     field :score_mechanisms do
       type !types[types.String]
-      description "Options for the score mechanism"
-      resolve ->(_object, _args, _context) { ::Score::MECHANISMS.all }
+      description "Options for the score mechanism w/ elimination option"
+      resolve ->(_object, _args, _context) { ::Score::MECHANISMS.top_chef }
     end
 
     connection :scores, ScoreType.connection_type do

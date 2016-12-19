@@ -29,8 +29,8 @@ RSpec.describe "Pool Scoring", js: true do
 
       expect(find("input[name='points']").value).to eq "1"
       within("select[name='score_mechanism']") do
-        expect(all("option").count).to eq(Score::MECHANISMS.all.count + 1)
-        Score::MECHANISMS.all.each do |mechanism|
+        expect(all("option").count).to eq(Score::MECHANISMS.top_chef.count + 1) # including placeholder option
+        Score::MECHANISMS.top_chef.each do |mechanism|
           find("option[value='#{mechanism}']")
         end
       end
@@ -42,27 +42,48 @@ RSpec.describe "Pool Scoring", js: true do
     let(:contestant2) { contestants.second }
     let(:contestant3) { contestants.third }
     let(:points) { (1..10).to_a.sample }
-    let(:mechanism) { Score::MECHANISMS.all.sample }
 
-    it "creates a score and adds each contestant that was selected and redirects to the admin panel" do
-      find("label", text: contestant1.first_name).click
-      find("label", text: contestant3.first_name).click
-      fill_in "points", with: points
-      select(mechanism, from: "score_mechanism")
+    context "non elmination" do
+      let(:mechanism) { [Score::MECHANISMS::QUICKFIRE, Score::MECHANISMS::WEEKLY_WINNER].sample }
 
-      click_button "Score"
-      find("h2", text: /super secret admin panel/i).click
-      expect(contestant1.reload.points).to eq points
-      expect(contestant3.reload.points).to eq points
-      expect(contestant2.reload.points).to eq 0
-      expect(contestant1.scores.last.mechanism).to eq mechanism
-    end
+      it "creates a score and adds each contestant that was selected and redirects to the admin panel" do
+        find("label", text: contestant1.first_name).click
+        find("label", text: contestant3.first_name).click
+        fill_in "points", with: points
+        select(mechanism, from: "score_mechanism")
 
-    context "unsuccessfully" do
-      xit "displays an error message when no contestants have been selected" do
+        click_button "Score"
+        find("h2", text: /super secret admin panel/i).click
+        expect(contestant1.reload.points).to eq points
+        expect(contestant3.reload.points).to eq points
+        expect(contestant2.reload.points).to eq 0
+        expect(contestant1.scores.last.mechanism).to eq mechanism
       end
 
-      xit "displays an error message when negative points have been entered" do
+      context "unsuccessfully" do
+        xit "displays an error message when no contestants have been selected" do
+        end
+
+        xit "displays an error message when negative points have been entered" do
+        end
+      end
+    end
+
+    context "elimination" do
+      let(:mechanism) { Score::MECHANISMS::ELIMINATION }
+
+      it "creates an advancement score for all non-selected contestants and marks the selected contestant as elminated" do
+        find("label", text: /#{contestant2.first_name}/i).click
+        fill_in "points", with: points
+        select(mechanism, from: "score_mechanism")
+
+        click_button "Score"
+        find("h2", text: /super secret admin panel/i).click
+        score = Score.last
+        expect(score.points).to eq points
+        expect(score.mechanism).to eq Score::MECHANISMS::ADVANCEMENT
+        expect(score.contestants).to match_array [contestant1, contestant3]
+        expect(contestant2.reload.eliminated?).to eq true
       end
     end
   end
