@@ -27,7 +27,6 @@ body {
     padding: 8px 15px;
     font-family: 'Gloria Hallelujah', cursive;
     font-size: 40px;
-    // font-weight: 700;
     color: $white;
     background-color: $dark-brown;
   }
@@ -42,7 +41,23 @@ body {
     padding-top: 10px;
   }
 
-  h2, h5 {
+  h2, h5, .pool-admin-links {
     text-align: center;
+  }
+
+  .pool-admin-links {
+    a {
+      color: $base-font-color;
+      font-size: 14px;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:not(:last-child) {
+        padding-right: 10px;
+      }
+    }
   }
 }

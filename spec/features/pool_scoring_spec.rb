@@ -10,9 +10,15 @@ RSpec.describe "Pool Scoring", js: true do
 
   before { visit "/pools/#{pool.id}/score" }
 
-  it "displays the pool title" do
+  it "displays the pool title and admin links" do
     within(".pool") do
       expect(page).to have_text(/#{pool.title}/i)
+    end
+    pool_id = pool.id
+    within(".pool-admin-links") do
+      expect(page).to have_link("Standings", href: "/pools/#{pool_id}")
+      expect(page).to have_link("Setup", href: "/pools/#{pool_id}/setup")
+      expect(page).to have_link("Score", href: "/pools/#{pool_id}/score")
     end
   end
 

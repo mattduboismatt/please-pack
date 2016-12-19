@@ -2,6 +2,7 @@ import React from 'react'
 import Relay from 'react-relay'
 
 import PoolScoringForm from 'components/pool_scoring_form'
+import PoolAdminLinks from 'components/pool_admin_links'
 
 class PoolScoring extends React.Component {
   render() {
@@ -10,7 +11,7 @@ class PoolScoring extends React.Component {
 
     return (
       <div className='scoring'>
-        <h5>Scoring</h5>
+        <PoolAdminLinks pool={pool} />
         <PoolScoringForm viewer={viewer} pool={pool} contestants={pool.contestants} />
       </div>
     )
@@ -31,6 +32,7 @@ export default Relay.createContainer(PoolScoring, {
           contestants(first: 100) {
             ${PoolScoringForm.getFragment('contestants')}
           }
+          ${PoolAdminLinks.getFragment('pool')}
         }
       }
     `

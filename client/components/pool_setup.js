@@ -5,6 +5,7 @@ import ContestantsList from 'components/contestants_list'
 import CreateContestantForm from 'components/create_contestant_form'
 import EntriesList from 'components/entries_list'
 import CreateEntryForm from 'components/create_entry_form'
+import PoolAdminLinks from 'components/pool_admin_links'
 
 class PoolSetup extends React.Component {
   render() {
@@ -12,7 +13,7 @@ class PoolSetup extends React.Component {
 
     return (
       <div className='setup'>
-        <h5>Setup</h5>
+        <PoolAdminLinks pool={pool} />
         <div className='contestants'>
           <ContestantsList contestants={pool.contestants} admin={true} />
           <CreateContestantForm pool={pool} />
@@ -43,6 +44,7 @@ export default Relay.createContainer(PoolSetup, {
           }
           ${CreateEntryForm.getFragment('pool')}
           ${CreateContestantForm.getFragment('pool')}
+          ${PoolAdminLinks.getFragment('pool')}
         }
       }
     `

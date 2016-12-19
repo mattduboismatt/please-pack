@@ -9,6 +9,15 @@ RSpec.describe "Setting up a pool", js: true do
 
   before { visit "/pools/#{pool.id}/setup" }
 
+  it "display links to pool standings, setup, and scoring" do
+    pool_id = pool.id
+    within(".pool-admin-links") do
+      expect(page).to have_link("Standings", href: "/pools/#{pool_id}")
+      expect(page).to have_link("Setup", href: "/pools/#{pool_id}/setup")
+      expect(page).to have_link("Score", href: "/pools/#{pool_id}/score")
+    end
+  end
+
   describe "contestants" do
     it "displays a list of the contestants" do
       within(".contestants-list") do
